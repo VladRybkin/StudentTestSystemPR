@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<h1><fmt:message key="student.test.system" bundle="${rb}" /></h1><br/>
+<h1>Student test system</h1><br/>
 
 <form>
     <input name="language" type="image" value="en_US"
@@ -26,17 +26,17 @@
 </form>
 <br>
 
-<label><a href="${pageContext.request.contextPath}/api/registration"><button onclick="">registration</button></a></label>
-<label><a href="${pageContext.request.contextPath}/api/login"><button onclick="">login</button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/registration"><button onclick=""><fmt:message key="registration" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/login"><button onclick=""><fmt:message key="login" bundle="${rb}" /></button></a></label>
 
 
 <br>
 <br>
-<label><a href="${pageContext.request.contextPath}/api/admin_page"><button onclick="">admin page</button></a></label>
-<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick="">statistic</button></a></label>
-<label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick="">student_page</button></a></label>
-<label><a href="${pageContext.request.contextPath}/api/error"><button onclick="">error page</button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/admin_page"><button onclick=""><fmt:message key="admin.page" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="student.page" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/error"><button onclick=""><fmt:message key="error" bundle="${rb}" /></button></a></label>
 
-
+<h2><fmt:message key="student.test.system" bundle="${rb}" /></h2>
 </body>
 </html>
