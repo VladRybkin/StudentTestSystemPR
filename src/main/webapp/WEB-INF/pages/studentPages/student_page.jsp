@@ -27,8 +27,8 @@
 
 <h2>Student page</h2>
 
-    login: <c:out value="${userLogin}"/><br/>
-    role: <c:out value="${userRole}"/><br/>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
 <label><a href="${pageContext.request.contextPath}/api/logout"><button onclick="">logout</button></a></label>
 
 <br><br>
