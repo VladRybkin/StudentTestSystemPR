@@ -24,6 +24,7 @@ public class Main {
         System.out.println(userDao.getUserByLogin("Vlad"));
         Double res=100/(5/2d);
         System.out.println(userDao.getUserByLogin("TT4"));
+        System.out.println("gg");
 
 
     }
