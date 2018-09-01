@@ -27,12 +27,12 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-<h2>Astronomy test</h2><br/>
+<h2><fmt:message key="astronomy.test" bundle="${rb}" /></h2><br/>
 <br>
 
-login: <c:out value="${userLogin}"/><br/>
-role: <c:out value="${userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick="">logout</button></a></label>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
 
@@ -51,7 +51,7 @@ role: <c:out value="${userRole}"/><br/>
 
     <table>
         <tr>
-            <th>STATISTIC</th>
+            <th><fmt:message key="statistic" bundle="${rb}" /></th>
         </tr>
         <c:forEach var="i" items="${statistic}">
             <tr>
@@ -79,9 +79,9 @@ role: <c:out value="${userRole}"/><br/>
 
 <br>
 
-<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick="">statistic</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
 
-<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to the main</button><br>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button><br>
 </a></label>
 
 

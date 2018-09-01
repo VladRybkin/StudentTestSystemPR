@@ -21,7 +21,7 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-<h2>Geography test</h2><br/>
+<h2><fmt:message key="geography.test" bundle="${rb}" /></h2><br/>
 <br>
 
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${userLogin}"/><br/>
@@ -40,14 +40,14 @@
     <label>${requestScope.Gfourth}<br><input type="text" name="userAnswer4"></label>input answer<br>
     <label>${requestScope.Gfifth}<br><input type="text" name="userAnswer5"></label>input answer<br>
     <input type="submit" value="ok"><br>
-    <label>correct answers: </label><c:out value="${count}"/><br/>
+    <label>correct answers: </label><c:out value="${requestScope.count}"/><br/>
 
 
     <table>
         <tr>
-            <th>STATISTIC</th>
+            <th><fmt:message key="statistic" bundle="${rb}" /></th>
         </tr>
-        <c:forEach var="i" items="${statistic}">
+        <c:forEach var="i" items="${requestScope.statistic}">
             <tr>
                 <th>
                     question: <c:out value="${i.testQuestion}"/>

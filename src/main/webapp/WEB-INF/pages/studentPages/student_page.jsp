@@ -25,19 +25,19 @@
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
 
-<h2>Student page</h2>
+<h2><fmt:message key="student.page" bundle="${rb}" /></h2>
 
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
 <fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick="">logout</button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 
 <br><br>
 
 
-<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick="">Statistic</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/geographyCourse"><button onclick="">Geography course</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/astronomyCourse"><button onclick="">Astronomy course</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to main</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/geographyCourse"><button onclick=""><fmt:message key="geography.course" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/astronomyCourse"><button onclick=""><fmt:message key="astronomy.course" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 
 
 </body>
