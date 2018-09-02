@@ -11,11 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccessFilter implements Filter {
-
+    private List<String> studentPages = new ArrayList<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        studentPages.add("/api/astronomyCourse");
+        studentPages.add("/api/geographyCourse");
+        studentPages.add("/api/student_page");
+        studentPages.add("/api/geographyCourse");
+        studentPages.add("/api/astronomyCourse");
+        studentPages.add("/api/geographytest");
+        studentPages.add("/api/astronomytest");
     }
 
     @Override
@@ -23,16 +29,22 @@ public class AccessFilter implements Filter {
         final HttpServletRequest request = (HttpServletRequest) servletRequest;
         final HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = ((HttpServletRequest) servletRequest).getSession();
-        User.Role role= (User.Role) request.getSession().getAttribute("role");
+        User.Role role = (User.Role) request.getSession().getAttribute("role");
         String path = request.getRequestURI();
 
-        if(path.contains("/api/admin_page") && (session != null && role==null ||!role.equals(User.Role.ADMIN ))) {
-            response.sendRedirect("/api/error");
-        } else{
-                filterChain.doFilter(servletRequest,servletResponse);
 
-            }
+
+
+        if (studentPages.contains(path) && (role == null || !role.equals(User.Role.STUDENT)) && !role.equals(User.Role.ADMIN)) {
+            response.sendRedirect("/api/error");
         }
+
+        if (path.contains("/api/admin_page") && (role == null || !role.equals(User.Role.ADMIN))) {
+            response.sendRedirect("/api/error");
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
+        }
+    }
 
 
     @Override
