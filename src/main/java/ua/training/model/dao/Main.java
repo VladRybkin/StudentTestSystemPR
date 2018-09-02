@@ -21,9 +21,9 @@ public class Main {
         UserAnswer userAnswer=new UserAnswer();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
         System.out.println(resourceBundle.getString("db.driver"));
-        System.out.println(userDao.getUserByLogin("Vlad"));
+
         Double res=100/(5/2d);
-        System.out.println(userDao.getUserByLogin("TT4"));
+
          ResourceBundle resourceBundle1 = ResourceBundle.getBundle("loc");
 
 

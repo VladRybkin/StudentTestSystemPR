@@ -28,7 +28,7 @@ public class JDBCUserDao implements UserDao {
     private final String USER_IS_EXIST_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
     private final String DELETE_QUERY = "DELETE FROM users  WHERE user_id = ?";
     private final String GET_ROLE_BY_LOGIN_AND_PASS_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
-    private final String GET_USER_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ?";
+    private final String GET_USER_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
 
     JDBCUserDao(Connection connection) {
         this.connection = connection;
@@ -217,13 +217,14 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public User getUserByLogin(String userLogin) {
+    public User getUserByLoginAndPassword(String userLogin, String userPassword) {
 
         User user = new User();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN_QUERY) ;
             preparedStatement.setString(1, userLogin);
+            preparedStatement.setString(2, userPassword);
             ResultSet resultSet = preparedStatement.executeQuery();
                 resultSet.next();
                 user = userMapper.extractFromResultSet(resultSet);

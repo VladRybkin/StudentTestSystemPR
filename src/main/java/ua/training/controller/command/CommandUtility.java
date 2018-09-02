@@ -19,7 +19,7 @@ class CommandUtility {
                 .getAttribute("loggedUsers");
 
         for (String loggedUser : loggedUsers) {
-            if (userLogin.equals(loggedUser)) {
+            if (userLogin.equals(loggedUser) ) {
                 return true;
             }
         }

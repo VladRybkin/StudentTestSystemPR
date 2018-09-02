@@ -2,7 +2,6 @@ package ua.training.controller.command;
 
 import ua.training.model.entity.User;
 import ua.training.service.LoginService;
-import ua.training.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +15,12 @@ public class LoginCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        User user=null;
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
         if (login != null) {
-            User user = loginService.getUserByLogin(login);
+            user = loginService.getUserByLoginAndPass(login, password);
             request.getSession().setAttribute("userFromLogin", user);
         }
         if (login != null) {
@@ -31,7 +30,7 @@ public class LoginCommand implements Command {
         if (login == null || login.equals("") || password == null || password.equals("")) {
             return "/WEB-INF/pages/regAndLog/login.jsp";
         }
-        if(CommandUtility.checkUserIsLogged(request, login)){
+        if(CommandUtility.checkUserIsLogged(request, user.getLogin())){
             return "redirect:/api/error";
         }
 

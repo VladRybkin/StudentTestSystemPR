@@ -26,22 +26,13 @@ public class AccessFilter implements Filter {
         User.Role role= (User.Role) request.getSession().getAttribute("role");
         String path = request.getRequestURI();
 
-        if(path.contains("/api/admin_page")) {
-            if ((session != null && role==null ||!role.equals(User.Role.ADMIN ))) {
-                response.sendRedirect("/api/error");
-            }else{
+        if(path.contains("/api/admin_page") && (session != null && role==null ||!role.equals(User.Role.ADMIN ))) {
+            response.sendRedirect("/api/error");
+        } else{
                 filterChain.doFilter(servletRequest,servletResponse);
 
             }
-        }else{
-                filterChain.doFilter(servletRequest,servletResponse);
         }
-
-
-
-
-
-    }
 
 
     @Override

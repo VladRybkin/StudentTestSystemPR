@@ -21,10 +21,10 @@ public class LoginService {
             return dao.getRoleByLoginAndPass(login, password);
         }
     }
-    public User getUserByLogin(String login) {
+    public User getUserByLoginAndPass(String login, String password) {
 
         try (UserDao dao = daoFactory.createUserDao()) {
-            return dao.getUserByLogin(login);
+            return dao.getUserByLoginAndPassword(login, password);
         }
     }
 }
