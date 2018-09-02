@@ -17,7 +17,9 @@ public class AdminPageCommand implements Command {
         TestResultService testResultService =new TestResultService();
         List<User> users=userService.findAll();
         List<TestResult>testResults= testResultService.findAll();
-
+        User user=new User();
+        user.setLogin("testlogin");
+        request.setAttribute("testlog", user);
         request.setAttribute("testResults", testResults);
         request.setAttribute("studentStats", users);
         return "/WEB-INF/pages/adminPages/admin_page.jsp";

@@ -60,6 +60,9 @@
         <c:forEach var="i" items="${requestScope.userAnswerStatistic}">
             <tr>
                 <th>
+                    id: <c:out value="${i.id}"/>
+                </th>
+                <th>
                     question: <c:out value="${i.testQuestion}"/>
                 </th>
                 <th>

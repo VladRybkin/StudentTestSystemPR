@@ -19,11 +19,11 @@ public class LoginCommand implements Command {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        if (login != null) {
+        if (login != null && password!=null) {
             user = loginService.getUserByLoginAndPass(login, password);
             request.getSession().setAttribute("userFromLogin", user);
         }
-        if (login != null) {
+        if (login != null && password!=null) {
             role = loginService.getRoleByLoginPassword(login, password);
 
         }

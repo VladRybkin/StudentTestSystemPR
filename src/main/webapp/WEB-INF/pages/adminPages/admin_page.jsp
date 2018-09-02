@@ -33,6 +33,26 @@
 <br><br>
 <form action="" method="get">
 
+    <table>
+        <tr>
+            <th>user statistic</th>
+        </tr>
+        <c:forEach var="i" items="${requestScope.studentStats}">
+            <tr>
+                <th>
+                    <li>login: <c:out value="${i.login}"/></li>
+                </th>
+                <th>
+                    <li>role: <c:out value="${i.role}"/></li>
+                </th>
+                <th>
+                    <li>email: <c:out value="${i.email}"/></li>
+                </th>
+
+            </tr>
+
+        </c:forEach>
+    </table><br>
 
     <table>
         <tr>
@@ -47,7 +67,7 @@
                     <li><fmt:message key="result" bundle="${rb}" />%: <c:out value="${i.result}"/></li>
                 </th>
                 <th>
-                    <li><fmt:message key="user" bundle="${rb}" />: <c:out value="${i.user}"/></li>
+                    <li><fmt:message key="user" bundle="${rb}" />: <c:out value="${i.user.getLogin()}"/></li>
                 </th>
 
                 <%--<th>--%>
@@ -59,26 +79,7 @@
         </c:forEach>
     </table>
     <br>
-    <table>
-        <tr>
-                    <th>user statistic</th>
-        </tr>
-        <c:forEach var="i" items="${requestScope.studentStats}">
-            <tr>
-                <th>
-                    <li>login: <c:out value="${i.login}"/></li>
-                </th>
-                <th>
-                    <li>role: <c:out value="${i.role}"/></li>
-                </th>
-                <th>
-                    <li>email: <c:out value="${i.email}"/></li>
-                </th>
-                
-            </tr>
 
-        </c:forEach>
-    </table>
     <br>
 </form>
 
