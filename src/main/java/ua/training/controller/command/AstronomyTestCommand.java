@@ -89,7 +89,7 @@ public class AstronomyTestCommand implements Command {
         request.setAttribute("Gfourth", questions.get(3).getQuestion());
         request.setAttribute("Gfifth", questions.get(4).getQuestion());
 
-        return "/WEB-INF/pages/tests/astronomytest.jsp";
+        return "/WEB-INF/pages/tests/astronomyTest.jsp";
     }
 
 

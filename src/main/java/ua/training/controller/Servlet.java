@@ -22,8 +22,8 @@ public class Servlet extends HttpServlet {
         super.init(servletConfig);
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
-        commands.put("geographytest", new GeographyTestCommand());
-        commands.put("astronomytest", new AstronomyTestCommand());
+        commands.put("geographyTest", new GeographyTestCommand());
+        commands.put("astronomyTest", new AstronomyTestCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("login", new LoginCommand());
         commands.put("logout", new LogOutCommand());

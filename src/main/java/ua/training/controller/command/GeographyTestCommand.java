@@ -91,7 +91,7 @@ public class GeographyTestCommand implements Command {
 
 
 
-        return "/WEB-INF/pages/tests/geographytest.jsp";
+        return "/WEB-INF/pages/tests/geographyTest.jsp";
     }
 
 

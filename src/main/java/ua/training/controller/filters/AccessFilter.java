@@ -20,8 +20,8 @@ public class AccessFilter implements Filter {
         studentPages.add("/api/student_page");
         studentPages.add("/api/geographyCourse");
         studentPages.add("/api/astronomyCourse");
-        studentPages.add("/api/geographytest");
-        studentPages.add("/api/astronomytest");
+        studentPages.add("/api/geographyTest");
+        studentPages.add("/api/astronomyTest");
     }
 
     @Override
@@ -31,9 +31,6 @@ public class AccessFilter implements Filter {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession();
         User.Role role = (User.Role) request.getSession().getAttribute("role");
         String path = request.getRequestURI();
-
-
-
 
         if (studentPages.contains(path) && (role == null || !role.equals(User.Role.STUDENT)) && !role.equals(User.Role.ADMIN)) {
             response.sendRedirect("/api/error");
