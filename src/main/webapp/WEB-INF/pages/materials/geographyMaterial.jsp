@@ -26,7 +26,7 @@
 </form>
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
 <fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <h1>Топ города планеты</h1>
 <br>
 
@@ -37,7 +37,7 @@
 
 
 
-<label><a href="${pageContext.request.contextPath}api/geographyCourse"><button onclick=""><fmt:message key="back.to.the.geography.course" bundle="${rb}" /></button><br>
+<label><a href="${pageContext.request.contextPath}/api/geographyCourse"><button onclick=""><fmt:message key="back.to.the.geography.course" bundle="${rb}" /></button><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to main</button></a></label><br>
 </body>
 </html>

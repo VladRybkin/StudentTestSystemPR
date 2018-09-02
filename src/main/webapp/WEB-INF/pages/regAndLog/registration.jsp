@@ -28,14 +28,14 @@
 </form>
 
 <form method="post" action="">
-    <label><input type="text" name="user_login"></label>login<br>
-    <label><input type="password" name="user_password"></label>password<br>
-    <label><input type="text" name="user_mail"></label>mail<br>
+    <label><input type="text" name="user_login"></label><fmt:message key="login" bundle="${rb}" /><br>
+    <label><input type="password" name="user_password"></label><fmt:message key="password" bundle="${rb}" /><br>
+    <label><input type="text" name="user_mail"></label><fmt:message key="email" bundle="${rb}" /><br>
     <input type="submit" value="register"><br>
     <c:out value="${requestScope.successReg}"/><br/>
 </form>
 
-<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to the main</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 
 </body>
 </html>

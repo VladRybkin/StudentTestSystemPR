@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<h1>Student test system</h1><br/>
+<h1><fmt:message key="student.test.system" bundle="${rb}" /></h1><br>
 
 <form>
     <input name="language" type="image" value="en_US"
@@ -37,6 +37,6 @@
 <label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="student.page" bundle="${rb}" /></button></a></label>
 <label><a href="${pageContext.request.contextPath}/api/error"><button onclick=""><fmt:message key="error" bundle="${rb}" /></button></a></label>
 
-<h2><fmt:message key="student.test.system" bundle="${rb}" /></h2>
+
 </body>
 </html>

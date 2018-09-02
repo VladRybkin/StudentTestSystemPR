@@ -29,7 +29,7 @@
 <h2><fmt:message key="admin.page" bundle="${rb}" /></h2>
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
 <fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 <form action="" method="get">
 
@@ -41,13 +41,13 @@
         <c:forEach var="i" items="${requestScope.testResults}">
             <tr>
                 <th>
-                    <li>category: <c:out value="${i.category}"/></li>
+                    <li><fmt:message key="category" bundle="${rb}" />: <c:out value="${i.category}"/></li>
                 </th>
                 <th>
-                    <li>result%: <c:out value="${i.result}"/></li>
+                    <li><fmt:message key="result" bundle="${rb}" />%: <c:out value="${i.result}"/></li>
                 </th>
                 <th>
-                    <li>user: <c:out value="${i.user}"/></li>
+                    <li><fmt:message key="user" bundle="${rb}" />: <c:out value="${i.user}"/></li>
                 </th>
 
                 <%--<th>--%>

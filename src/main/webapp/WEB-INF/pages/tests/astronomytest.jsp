@@ -32,7 +32,7 @@
 
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
 <fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
 
@@ -40,13 +40,13 @@
 
 
 <form method="post">
-    <label>${requestScope.Gfirst}<br><input type="text" name="userAnswer1"></label>input answer<br>
-    <label>${requestScope.Gsecond}<br><input type="text" name="userAnswer2"></label>input answer<br>
-    <label>${requestScope.Gthird}<br><input type="text" name="userAnswer3"></label>input answer<br>
-    <label>${requestScope.Gfourth}<br><input type="text" name="userAnswer4"></label>input answer<br>
-    <label>${requestScope.Gfifth}<br><input type="text" name="userAnswer5"></label>input answer<br>
+    <label>${requestScope.Gfirst}<br><input type="text" name="userAnswer1"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
+    <label>${requestScope.Gsecond}<br><input type="text" name="userAnswer2"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
+    <label>${requestScope.Gthird}<br><input type="text" name="userAnswer3"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
+    <label>${requestScope.Gfourth}<br><input type="text" name="userAnswer4"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
+    <label>${requestScope.Gfifth}<br><input type="text" name="userAnswer5"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
     <input type="submit" value="ok"><br>
-    <label>correct answers: </label><c:out value="${requestScope.count}"/><br/>
+    <label><fmt:message key="correct.answers" bundle="${rb}" />: </label><c:out value="${requestScope.count}"/><br/>
 
 
     <table>
@@ -79,8 +79,8 @@
 
 <br>
 
-<label><a href="${pageContext.request.contextPath}api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
-<label><a href="${pageContext.request.contextPath}api/astronomyCourse.jsp"><button onclick=""><fmt:message key="back.to.the.astronomy.course" bundle="${rb}" /></button><br>
+<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/astronomyCourse.jsp"><button onclick=""><fmt:message key="back.to.the.astronomy.course" bundle="${rb}" /></button><br>
 </a></label>
 
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button><br>

@@ -28,13 +28,13 @@
 <h1><fmt:message key="astronomy.course" bundle="${rb}" /></h1>
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
 <fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
 
-<label><a href="${pageContext.request.contextPath}api/astronomyMaterial"><button onclick=""><fmt:message key="astronomy.material" bundle="${rb}" /></button></a></label><br>
-<label><a href="${pageContext.request.contextPath}api/astronomytest"><button onclick=""><fmt:message key="astronomy.test" bundle="${rb}" /></button></a></label><br>
-<label><a href="${pageContext.request.contextPath}api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/astronomyMaterial"><button onclick=""><fmt:message key="astronomy.material" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/astronomytest"><button onclick=""><fmt:message key="astronomy.test" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 
 </body>
