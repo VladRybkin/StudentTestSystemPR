@@ -5,13 +5,17 @@ import ua.training.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ResourceBundle;
 
 public class RegistrationCommand implements Command {
 
     String REGEX_EMAIL = "^[[\\w]|[\\.]]+@[\\w]+[\\.][\\w]+$";
+
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        UserService userService=new UserService();
+
+        UserService userService = new UserService();
         User user = new User();
         String login = request.getParameter("user_login");
         String password = request.getParameter("user_password");
@@ -22,18 +26,10 @@ public class RegistrationCommand implements Command {
         user.setRole(User.Role.STUDENT);
 
 
-            if (user.getLogin() != null && user.getPassword() != null && user.getEmail() != null && user.getEmail().matches(REGEX_EMAIL) ){
-                try {
-                    userService.create(user);
-                    request.setAttribute("successReg", "Registration successful "+"login "+login+" password "+password+" email "+email);
-                }catch (Exception e){
-                    return "redirect:/api/error";
-                }
-
-
-            }
-
-
+        if (user.getLogin() != null && user.getPassword() != null && user.getEmail() != null && user.getEmail().matches(REGEX_EMAIL)) {
+            userService.create(user);
+            request.setAttribute("successReg", "registration successful " + "login " + login + " password " + password + " email " + email);
+        }
 
         return "/WEB-INF/pages/regAndLog/registration.jsp";
     }

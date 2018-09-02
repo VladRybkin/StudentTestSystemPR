@@ -31,7 +31,7 @@ public class LoginCommand implements Command {
         if (login == null || login.equals("") || password == null || password.equals("")) {
             return "/WEB-INF/pages/regAndLog/login.jsp";
         }
-        if(CommandUtility.checkUserIsLogged(request, login, password)){
+        if(CommandUtility.checkUserIsLogged(request, login)){
             return "redirect:/api/error";
         }
 

@@ -27,8 +27,6 @@ public class UserStatisticCommand implements Command {
         request.setAttribute("userStatistic", testResults);
         request.setAttribute("userAnswerStatistic", userAnswers);
 //        request.setAttribute("user_statistic", request.getSession().getAttribute("statistic"));
-        request.setAttribute("userLogin", request.getSession().getAttribute("userLogin"));
-        request.setAttribute("userRole", request.getSession().getAttribute("role"));
 
         return "/WEB-INF/pages/statistic/user_statistic.jsp";
     }

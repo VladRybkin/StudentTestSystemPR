@@ -24,8 +24,8 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
-<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${sessionScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.role}"/><br/>
 <label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <h1>Топ города планеты</h1>
 <br>

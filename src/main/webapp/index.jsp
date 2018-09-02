@@ -35,8 +35,6 @@
 <label><a href="${pageContext.request.contextPath}/api/admin_page"><button onclick=""><fmt:message key="admin.page" bundle="${rb}" /></button></a></label>
 <label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label>
 <label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="student.page" bundle="${rb}" /></button></a></label>
-<label><a href="${pageContext.request.contextPath}/api/error"><button onclick=""><fmt:message key="error" bundle="${rb}" /></button></a></label>
-
 
 </body>
 </html>

@@ -30,8 +30,8 @@
 <h2><fmt:message key="astronomy.test" bundle="${rb}" /></h2><br/>
 <br>
 
-<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
-<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${sessionScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.Role}"/><br/>
 <label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
@@ -51,9 +51,9 @@
 
     <table>
         <tr>
-            <th><fmt:message key="statistic" bundle="${rb}" /></th>
+            <th>statistic</th>
         </tr>
-        <c:forEach var="i" items="${requestScope.statistic}">
+        <c:forEach var="i" items="${sessionScope.statistic}">
             <tr>
                 <th>
                     question: <c:out value="${i.testQuestion}"/>

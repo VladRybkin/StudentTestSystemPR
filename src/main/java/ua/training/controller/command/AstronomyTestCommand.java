@@ -33,19 +33,11 @@ public class AstronomyTestCommand implements Command {
         String userAnswer4 = request.getParameter("userAnswer4");
         String userAnswer5 = request.getParameter("userAnswer5");
 
-        if (userAnswer1 != null) {
+        if (userAnswer1 != null && userAnswer2 != null && userAnswer3 != null && userAnswer4 != null && userAnswer5 != null) {
             addToStatistic(questions.get(0).getQuestion(), userAnswer1, questions.get(0).getAnswer(), statistic);
-        }
-        if ((userAnswer2 != null)) {
             addToStatistic(questions.get(1).getQuestion(), userAnswer2, questions.get(1).getAnswer(), statistic);
-        }
-        if ((userAnswer3 != null)) {
             addToStatistic(questions.get(2).getQuestion(), userAnswer3, questions.get(2).getAnswer(), statistic);
-        }
-        if ((userAnswer4 != null)) {
             addToStatistic(questions.get(3).getQuestion(), userAnswer4, questions.get(3).getAnswer(), statistic);
-        }
-        if ((userAnswer5 != null)) {
             addToStatistic(questions.get(4).getQuestion(), userAnswer5, questions.get(4).getAnswer(), statistic);
         }
 
@@ -96,10 +88,6 @@ public class AstronomyTestCommand implements Command {
         request.setAttribute("Gthird", questions.get(2).getQuestion());
         request.setAttribute("Gfourth", questions.get(3).getQuestion());
         request.setAttribute("Gfifth", questions.get(4).getQuestion());
-
-        request.setAttribute("userLogin", request.getSession().getAttribute("userLogin"));
-        request.setAttribute("userRole", request.getSession().getAttribute("role"));
-
 
         return "/WEB-INF/pages/tests/astronomytest.jsp";
     }

@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import java.util.ResourceBundle;
 
 public class ConnectionPoolHolder {
-    public static ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
     private static volatile DataSource dataSource;
 
     public static DataSource getDataSource() {
