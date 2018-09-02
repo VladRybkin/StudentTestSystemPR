@@ -9,24 +9,23 @@ import java.io.IOException;
 
 
 public class LoginCommand implements Command {
-    private LoginService loginService = new LoginService();
-    private User.Role role = User.Role.UNKNOWN;
+
 
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        LoginService loginService = new LoginService();
+        User.Role role = User.Role.UNKNOWN;
         User user=null;
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
         if (login != null && password!=null) {
             user = loginService.getUserByLoginAndPass(login, password);
+            role = user.getRole();
             request.getSession().setAttribute("userFromLogin", user);
         }
-        if (login != null && password!=null) {
-            role = loginService.getRoleByLoginPassword(login, password);
 
-        }
         if (login == null || login.equals("") || password == null || password.equals("")) {
             return "/WEB-INF/pages/regAndLog/login.jsp";
         }

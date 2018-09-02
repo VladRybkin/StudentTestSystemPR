@@ -35,7 +35,7 @@
 
 
 <label><a href="${pageContext.request.contextPath}/api/geographyMaterial"><button onclick=""><fmt:message key="geography.material" bundle="${rb}" /></button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/geographytest"><button onclick=""><fmt:message key="geography.test" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/geographyTest"><button onclick=""><fmt:message key="geography.test" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 

@@ -33,7 +33,7 @@
 
 
 <label><a href="${pageContext.request.contextPath}/api/astronomyMaterial"><button onclick=""><fmt:message key="astronomy.material" bundle="${rb}" /></button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/astronomytest"><button onclick=""><fmt:message key="astronomy.test" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/astronomyTest"><button onclick=""><fmt:message key="astronomy.test" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 

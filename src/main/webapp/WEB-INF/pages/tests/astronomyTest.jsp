@@ -31,7 +31,7 @@
 <br>
 
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${sessionScope.userLogin}"/><br/>
-<fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.Role}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.role}"/><br/>
 <label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
