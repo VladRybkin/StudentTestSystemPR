@@ -24,6 +24,10 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+
 
 <form>
     <h1>Звёздная эволюция</h1>
@@ -56,7 +60,7 @@
 
     Вышеописанный сценарий правомерен только в случае, если молекулярное облако не вращается, однако все они в той или иной мере обладают вращательным моментом. Согласно закону сохранения импульса, по мере уменьшения размера облака растёт скорость его вращения, и в определённый момент вещество перестает вращаться как одно тело и разделяется на слои, продолжающие коллапсировать независимо друг от друга. Число и массы этих слоёв зависят от начальных массы и скорости вращения молекулярного облака. В зависимости от этих параметров формируются различные системы небесных тел: звёздные скопления, двойные звёзды, звёзды с планетами.
 </form>
-<label><a href="${pageContext.request.contextPath}/api/astronomyCourse"><button onclick="">back to astronomy course</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to main</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/astronomyCourse"><button onclick=""><fmt:message key="back.to.the.astronomy.course" bundle="${rb}" /></button><br></a></label>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 </body>
 </html>

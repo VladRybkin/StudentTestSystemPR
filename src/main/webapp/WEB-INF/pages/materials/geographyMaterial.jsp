@@ -24,6 +24,9 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <h1>Топ города планеты</h1>
 <br>
 
@@ -34,7 +37,7 @@
 
 
 
-<label><a href="${pageContext.request.contextPath}/api/geographyCourse"><button onclick="">back to geography course</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/geographyCourse"><button onclick=""><fmt:message key="back.to.the.geography.course" bundle="${rb}" /></button><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to main</button></a></label><br>
 </body>
 </html>

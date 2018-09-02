@@ -7,6 +7,8 @@ import java.io.IOException;
 public class GeographyMaterialCommand implements  Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setAttribute("userLogin", request.getSession().getAttribute("userLogin"));
+        request.setAttribute("userRole", request.getSession().getAttribute("role"));
         return "/WEB-INF/pages/materials/geographyMaterial.jsp";
     }
 }

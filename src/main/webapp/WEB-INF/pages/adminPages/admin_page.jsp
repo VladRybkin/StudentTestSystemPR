@@ -26,10 +26,10 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-<h2>Hello admin</h2>
-login: <c:out value="${userLogin}"/><br/>
-role: <c:out value="${userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick="">logout</button></a></label>
+<h2><fmt:message key="admin.page" bundle="${rb}" /></h2>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 <form action="" method="get">
 
@@ -38,7 +38,7 @@ role: <c:out value="${userRole}"/><br/>
         <tr>
             <th>result statistic</th>
         </tr>
-        <c:forEach var="i" items="${testResults}">
+        <c:forEach var="i" items="${requestScope.testResults}">
             <tr>
                 <th>
                     <li>category: <c:out value="${i.category}"/></li>
@@ -63,7 +63,7 @@ role: <c:out value="${userRole}"/><br/>
         <tr>
                     <th>user statistic</th>
         </tr>
-        <c:forEach var="i" items="${studentStats}">
+        <c:forEach var="i" items="${requestScope.studentStats}">
             <tr>
                 <th>
                     <li>login: <c:out value="${i.login}"/></li>
@@ -85,7 +85,7 @@ role: <c:out value="${userRole}"/><br/>
 <br><br>
 
     <label><a href="${pageContext.request.contextPath}/index.jsp">
-        <button onclick="">back to main</button>
+        <button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button>
     </a></label><br>
 
 

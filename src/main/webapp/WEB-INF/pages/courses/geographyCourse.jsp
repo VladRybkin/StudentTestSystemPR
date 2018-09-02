@@ -24,18 +24,19 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-<h1>Georgraphy course</h1>
 
-login: <c:out value="${userLogin}"/><br/>
-role: <c:out value="${userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick="">logout</button></a></label>
+<h1><fmt:message key="geography.course" bundle="${rb}" /></h1>
+
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
 
 
-<label><a href="${pageContext.request.contextPath}/api/geographyMaterial"><button onclick="">Geography material</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/geographytest"><button onclick="">Geography test</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick="">back to student page</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to main</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/geographyMaterial"><button onclick=""><fmt:message key="geography.material" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/geographytest"><button onclick=""><fmt:message key="geography.test" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 
 </body>

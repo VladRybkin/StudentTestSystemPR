@@ -32,7 +32,7 @@
     <label><input type="password" name="user_password"></label>password<br>
     <label><input type="text" name="user_mail"></label>mail<br>
     <input type="submit" value="register"><br>
-    <c:out value="${successReg}"/><br/>
+    <c:out value="${requestScope.successReg}"/><br/>
 </form>
 
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to the main</button></a></label><br>

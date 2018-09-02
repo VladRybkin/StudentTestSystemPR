@@ -24,9 +24,9 @@
 <h2><fmt:message key="geography.test" bundle="${rb}" /></h2><br/>
 <br>
 
-<fmt:message key="login" bundle="${rb}" />: <c:out value="${userLogin}"/><br/>
-<fmt:message key="role" bundle="${rb}" />: <c:out value="${userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
 
@@ -73,7 +73,9 @@
 
 <br>
 
-<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/geographyCourse"><button onclick=""><fmt:message key="back.to.the.geography.course" bundle="${rb}" /></button><br>
+</a></label>
 
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button><br>
 </a></label>

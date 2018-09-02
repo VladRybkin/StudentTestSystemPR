@@ -15,7 +15,7 @@
     <title>Astronomy Course</title>
 </head>
 <body>
-<h1>Astronomy Course</h1>
+
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language: pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="loc" var="rb"/>
@@ -25,16 +25,16 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-
-login: <c:out value="${userLogin}"/><br/>
-role: <c:out value="${userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick="">logout</button></a></label>
+<h1><fmt:message key="astronomy.course" bundle="${rb}" /></h1>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
 
-<label><a href="${pageContext.request.contextPath}/api/astronomyMaterial"><button onclick="">Astronomy material</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/astronomytest"><button onclick="">Astronomy test</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick="">back to student page</button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick="">back to main</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/astronomyMaterial"><button onclick=""><fmt:message key="astronomy.material" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/astronomytest"><button onclick=""><fmt:message key="astronomy.test" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 
 </body>

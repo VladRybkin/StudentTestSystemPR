@@ -30,9 +30,9 @@
 <h2><fmt:message key="astronomy.test" bundle="${rb}" /></h2><br/>
 <br>
 
-<fmt:message key="login" bundle="${rb}" />: <c:out value="${userLogin}"/><br/>
-<fmt:message key="role" bundle="${rb}" />: <c:out value="${userRole}"/><br/>
-<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${requestScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${requestScope.userRole}"/><br/>
+<label><a href="${pageContext.request.contextPath}api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
 
 
@@ -46,14 +46,14 @@
     <label>${requestScope.Gfourth}<br><input type="text" name="userAnswer4"></label>input answer<br>
     <label>${requestScope.Gfifth}<br><input type="text" name="userAnswer5"></label>input answer<br>
     <input type="submit" value="ok"><br>
-    <label>correct answers: </label><c:out value="${count}"/><br/>
+    <label>correct answers: </label><c:out value="${requestScope.count}"/><br/>
 
 
     <table>
         <tr>
             <th><fmt:message key="statistic" bundle="${rb}" /></th>
         </tr>
-        <c:forEach var="i" items="${statistic}">
+        <c:forEach var="i" items="${requestScope.statistic}">
             <tr>
                 <th>
                     question: <c:out value="${i.testQuestion}"/>
@@ -79,7 +79,9 @@
 
 <br>
 
-<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}api/astronomyCourse.jsp"><button onclick=""><fmt:message key="back.to.the.astronomy.course" bundle="${rb}" /></button><br>
+</a></label>
 
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button><br>
 </a></label>
