@@ -4,6 +4,7 @@ import ua.training.model.dao.DaoFactory;
 import ua.training.model.dao.UserAnswerDao;
 import ua.training.model.entity.UserAnswer;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserAnswerService {
@@ -12,6 +13,12 @@ public class UserAnswerService {
     public void create(UserAnswer userAnswer) {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
             dao.create(userAnswer);
+        }
+    }
+
+    public void insertUserAnswers(UserAnswer ... userAnswers) throws SQLException {
+        try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
+            dao.insertUserAnswers(userAnswers);
         }
     }
 

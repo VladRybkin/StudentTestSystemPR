@@ -6,6 +6,7 @@ import ua.training.service.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +72,11 @@ public class AstronomyTestCommand implements Command {
 
 
         if (statistic.size() == 5) {
-            addStatsToDatabase(statistic);
+            try {
+                addStatsToDatabase(statistic);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         if (userAnswer1 != null) {
@@ -118,10 +123,8 @@ public class AstronomyTestCommand implements Command {
         }
     }
 
-    private void addStatsToDatabase(List<UserAnswer> statistic) {
-        for (UserAnswer answer : statistic) {
-            userAnswerService.create(answer);
-        }
+    private void addStatsToDatabase(List<UserAnswer>statistic) throws SQLException {
+        userAnswerService.insertUserAnswers( statistic.get(0),statistic.get(1),statistic.get(2),statistic.get(3),statistic.get(4));
     }
 
     private void setUserToResult(TestResult result, User user) {

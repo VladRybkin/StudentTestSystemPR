@@ -32,6 +32,21 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     }
 
     @Override
+    public void insertUserAnswers(UserAnswer ... userAnswers) throws SQLException {
+        try {
+            connection.setAutoCommit(false);
+            for (UserAnswer userAnswer:userAnswers){
+                create(userAnswer);
+            }
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            connection.rollback();
+        }
+
+    }
+
+    @Override
     public UserAnswer findById(int id) {
         return null;
     }
