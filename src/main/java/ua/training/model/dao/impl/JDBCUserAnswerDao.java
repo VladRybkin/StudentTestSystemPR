@@ -33,15 +33,19 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
 
     @Override
     public void insertUserAnswers(UserAnswer ... userAnswers) throws SQLException {
-        try {
+        final String query = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" +
+                "VALUES\n" +
+                "(?, ?, ?, ?);";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
             connection.setAutoCommit(false);
             for (UserAnswer userAnswer:userAnswers){
-                create(userAnswer);
+                userAnswerMapper.setParameters(ps, userAnswer);
+                ps.executeUpdate();
             }
             connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
             connection.rollback();
+            e.printStackTrace();
         }
 
     }
