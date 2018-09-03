@@ -37,7 +37,7 @@
 <form action="" method="get">
     <div class="content-box-large">
         <div class="panel-heading">
-            <div class="panel-title">statistic</div>
+            <div class="panel-title"><fmt:message key="user.test.results.statistic" bundle="${rb}" /></div>
         </div>
         <div class="panel-body">
             <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
@@ -69,17 +69,17 @@
     <br>
     <div class="content-box-large">
         <div class="panel-heading">
-            <div class="panel-title">statistic</div>
+            <div class="panel-title"><fmt:message key="user.answers.statistic" bundle="${rb}" /></div>
         </div>
         <div class="panel-body">
             <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
                 <thead>
                 <tr class="mySuprerClass">
                     <th>Id</th>
-                    
-                    <th>test question</th>
-                    <th>user answer</th>
-                    <th>correct answer</th>
+
+                    <th><fmt:message key="test.question" bundle="${rb}" /></th>
+                    <th><fmt:message key="user.answer" bundle="${rb}" /></th>
+                    <th><fmt:message key="correct.answer" bundle="${rb}" /></th>
                 </tr>
                 </thead>
                 <tbody>

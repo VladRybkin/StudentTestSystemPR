@@ -35,16 +35,16 @@
 
     <div class="content-box-large">
         <div class="panel-heading">
-            <div class="panel-title">statistic</div>
+            <div class="panel-title"><fmt:message key="user.statistic" bundle="${rb}" /></div>
         </div>
         <div class="panel-body">
             <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
                 <thead>
                 <tr class="mySuprerClass">
                     <th>Id</th>
-                    <th>login</th>
-                    <th>role</th>
-                    <th>email</th>
+                    <th><fmt:message key="login" bundle="${rb}" /></th>
+                    <th><fmt:message key="role" bundle="${rb}" /></th>
+                    <th><fmt:message key="email" bundle="${rb}" /></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,16 +65,16 @@
 
     <div class="content-box-large">
         <div class="panel-heading">
-            <div class="panel-title">statistic</div>
+            <div class="panel-title"><fmt:message key="user.test.results.statistic" bundle="${rb}" /></div>
         </div>
         <div class="panel-body">
             <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
                 <thead>
                 <tr class="mySuprerClass">
                     <th>Id</th>
-                    <th>category</th>
-                    <th>result</th>
-                    <th>user</th>
+                    <th><fmt:message key="category" bundle="${rb}" /></th>
+                    <th><fmt:message key="result" bundle="${rb}" /></th>
+                    <th><fmt:message key="user" bundle="${rb}" /></th>
                 </tr>
                 </thead>
                 <tbody>

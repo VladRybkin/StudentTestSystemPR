@@ -6,6 +6,7 @@ import ua.training.service.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,10 +119,6 @@ public class GeographyTestCommand implements Command {
         }
 
     }
-
-
-
-
 
 
     private void setUserToAnswers(List<UserAnswer> statistic, User user) {
