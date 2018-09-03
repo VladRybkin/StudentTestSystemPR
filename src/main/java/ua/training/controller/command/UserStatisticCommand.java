@@ -5,10 +5,14 @@ import ua.training.model.entity.User;
 import ua.training.model.entity.UserAnswer;
 import ua.training.service.TestResultService;
 import ua.training.service.UserAnswerService;
+import ua.training.service.comparators.TestResultComparator;
+import ua.training.service.comparators.UserAnswerComparator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserStatisticCommand implements Command {
@@ -21,12 +25,19 @@ public class UserStatisticCommand implements Command {
         User user=(User) request.getSession().getAttribute("userFromLogin");
         List<TestResult>testResults=testResultService.findAllByUserId(user.getId());
         List<UserAnswer>userAnswers=userAnswerService.findAllByUserId(user.getId());
+        Collections.sort(userAnswers, new UserAnswerComparator());
+        Collections.sort(testResults, new TestResultComparator());
+
+
+
+
+
 
 
 
         request.setAttribute("userStatistic", testResults);
         request.setAttribute("userAnswerStatistic", userAnswers);
-//        request.setAttribute("user_statistic", request.getSession().getAttribute("statistic"));
+
 
         return "/WEB-INF/pages/statistic/user_statistic.jsp";
     }

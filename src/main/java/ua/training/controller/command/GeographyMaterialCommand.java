@@ -7,7 +7,6 @@ import java.io.IOException;
 public class GeographyMaterialCommand implements  Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         return "/WEB-INF/pages/materials/geographyMaterial.jsp";
     }
 }

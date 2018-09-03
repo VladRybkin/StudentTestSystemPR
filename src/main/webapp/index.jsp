@@ -13,6 +13,7 @@
     <title>Stutdent test system</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
 </head>
 <body>
 
@@ -24,10 +25,14 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-<br>
+
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${sessionScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.role}"/><br/>
+
 
 <label><a href="${pageContext.request.contextPath}/api/registration"><button onclick=""><fmt:message key="registration" bundle="${rb}" /></button></a></label>
 <label><a href="${pageContext.request.contextPath}/api/login"><button onclick=""><fmt:message key="login" bundle="${rb}" /></button></a></label>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 
 
 <br>

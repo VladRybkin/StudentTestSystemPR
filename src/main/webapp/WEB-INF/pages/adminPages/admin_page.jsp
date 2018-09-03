@@ -33,51 +33,65 @@
 <br><br>
 <form action="" method="get">
 
-    <table>
-        <tr>
-            <th>user statistic</th>
-        </tr>
-        <c:forEach var="i" items="${requestScope.studentStats}">
-            <tr>
-                <th>
-                    <li>login: <c:out value="${i.login}"/></li>
-                </th>
-                <th>
-                    <li>role: <c:out value="${i.role}"/></li>
-                </th>
-                <th>
-                    <li>email: <c:out value="${i.email}"/></li>
-                </th>
+    <div class="content-box-large">
+        <div class="panel-heading">
+            <div class="panel-title">statistic</div>
+        </div>
+        <div class="panel-body">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
+                <thead>
+                <tr class="mySuprerClass">
+                    <th>Id</th>
+                    <th>login</th>
+                    <th>role</th>
+                    <th>email</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </tr>
+                <c:forEach var="i" items="${requestScope.studentStats}">
+                    <tr >
+                        <td class="center"><c:out value="${i.id}"/></td>
+                        <td class="center"><c:out value="${i.login}"/></td>
+                        <td class="center"><c:out value="${i.role}"/></td>
+                        <td class="center"><c:out value="${i.email}"/></td>
+                    </tr>
+                </c:forEach>
 
-        </c:forEach>
-    </table><br>
+                </tbody>
+            </table>
+        </div>
+    </div><br>
 
-    <table>
-        <tr>
-            <th>result statistic</th>
-        </tr>
-        <c:forEach var="i" items="${requestScope.testResults}">
-            <tr>
-                <th>
-                    <li><fmt:message key="category" bundle="${rb}" />: <c:out value="${i.category}"/></li>
-                </th>
-                <th>
-                    <li><fmt:message key="result" bundle="${rb}" />%: <c:out value="${i.result}"/></li>
-                </th>
-                <th>
-                    <li><fmt:message key="user" bundle="${rb}" />: <c:out value="${i.user.getLogin()}"/></li>
-                </th>
+    <div class="content-box-large">
+        <div class="panel-heading">
+            <div class="panel-title">statistic</div>
+        </div>
+        <div class="panel-body">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
+                <thead>
+                <tr class="mySuprerClass">
+                    <th>Id</th>
+                    <th>category</th>
+                    <th>result</th>
+                    <th>user</th>
+                </tr>
+                </thead>
+                <tbody>
 
-                <%--<th>--%>
-                    <%--<li>test results: <c:out value="${i.testResults}"/></li>--%>
-                <%--</th>--%>
+                <c:forEach var="i" items="${requestScope.testResults}">
+                    <tr >
+                        <td class="center"><c:out value="${i.id}"/></td>
+                        <td class="center"><c:out value="${i.category}"/></td>
+                        <td class="center"><c:out value="${i.result}"/></td>
+                        <td class="center"><c:out value="${i.user.getLogin()}"/></td>
+                    </tr>
+                </c:forEach>
 
-            </tr>
-
-        </c:forEach>
-    </table>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br>
 
     <br>

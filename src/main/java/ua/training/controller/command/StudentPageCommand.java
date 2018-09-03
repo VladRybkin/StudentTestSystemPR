@@ -14,7 +14,7 @@ public class StudentPageCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         CourseService courseService = new CourseService();
         UserService userService = new UserService();
-        ResourceBundle bundle=ResourceBundle.getBundle("loc");
+
 //        User user = (User) request.getSession().getAttribute("userFromLogin");
 //        User user1 = userService.findCoursesByUserId(user.getId());
 //        if (user1.getCourses().size() == 0) {

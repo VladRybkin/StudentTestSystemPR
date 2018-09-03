@@ -35,51 +35,70 @@
 <br><br>
 
 <form action="" method="get">
+    <div class="content-box-large">
+        <div class="panel-heading">
+            <div class="panel-title">statistic</div>
+        </div>
+        <div class="panel-body">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
+                <thead>
+                <tr class="mySuprerClass">
+                    <th>Id</th>
 
+                    <th><fmt:message key="category" bundle="${rb}" /></th>
+                    <th><fmt:message key="result" bundle="${rb}" /></th>
+                </tr>
+                </thead>
+                <tbody>
 
-    <table>
-        <tr><th>statistic</th></tr>
+                <c:forEach var="i" items="${requestScope.userStatistic}">
+                    <tr >
+                        <td class="center"><c:out value="${i.id}"/></td>
+                        <td class="center"><c:out value="${i.category}"/></td>
+                        <td class="center"><c:out value="${i.result}"/></td>
+                    </tr>
+                </c:forEach>
 
-        <c:forEach var="i" items="${requestScope.userStatistic}">
-            <tr>
-                <th>
-                    id: <c:out value="${i.id}"/>
-                </th>
-                <th>
-                    category: <c:out value="${i.category}"/>
-                </th>
-                <th>
-                    result %: <c:out value="${i.result}"/>
-                </th>
-            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        </c:forEach>
-    </table>
     <br>
 
-    <table>
-        <tr><th>statistic</th></tr>
-
-        <c:forEach var="i" items="${requestScope.userAnswerStatistic}">
-            <tr>
-                <th>
-                    id: <c:out value="${i.id}"/>
-                </th>
-                <th>
-                    question: <c:out value="${i.testQuestion}"/>
-                </th>
-                <th>
-                    user answer: <c:out value="${i.userAnswer}"/>
-                </th>
-                <th>
-                    correct answer: <c:out value="${i.correctAnswer}"/>
-                </th>
-
-            </tr>
-
-        </c:forEach>
-    </table>
     <br>
+    <div class="content-box-large">
+        <div class="panel-heading">
+            <div class="panel-title">statistic</div>
+        </div>
+        <div class="panel-body">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
+                <thead>
+                <tr class="mySuprerClass">
+                    <th>Id</th>
+                    
+                    <th>test question</th>
+                    <th>user answer</th>
+                    <th>correct answer</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <c:forEach var="i" items="${requestScope.userAnswerStatistic}">
+                    <tr >
+                        <td class="center"><c:out value="${i.id}"/></td>
+                        <td class="center"><c:out value="${i.testQuestion}"/></td>
+                        <td class="center"><c:out value="${i.userAnswer}"/></td>
+                        <td class="center"><c:out value="${i.correctAnswer}"/></td>
+
+
+                    </tr>
+                </c:forEach>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </form>
 <br>
