@@ -27,10 +27,15 @@ public class TestResultService {
             return dao.findAll();
         }
     }
-
-    public List<TestResult> findAllByUserId(int id, int currentPage, int recordsPerPage) {
+    public List<TestResult> findAllWithLimit(int from, int to) {
         try (TestResultDao dao = daoFactory.createTestResultDao()) {
-            return dao.findAllByUserId(id, currentPage, recordsPerPage);
+            return dao.findAllWithLimit(from, to);
+        }
+    }
+
+    public List<TestResult> findAllByUserId(int id, int from, int to) {
+        try (TestResultDao dao = daoFactory.createTestResultDao()) {
+            return dao.findAllByUserId(id, from, to);
         }
     }
 

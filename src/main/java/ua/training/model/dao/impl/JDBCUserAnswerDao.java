@@ -70,9 +70,9 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     }
 
     @Override
-    public List<UserAnswer> findAllByUserId(int id, int currentPage, int recordsPerPage) {
+    public List<UserAnswer> findAllByUserId(int id, int from, int to) {
         Map<Integer, UserAnswer> userAnswers = new HashMap<>();
-        Extract(userAnswers, findAllByUserIdQuery + id+" limit "+ currentPage+", "+recordsPerPage);
+        Extract(userAnswers, findAllByUserIdQuery + id+" limit "+ from+", "+to);
 
         return new ArrayList<>(userAnswers.values());
 

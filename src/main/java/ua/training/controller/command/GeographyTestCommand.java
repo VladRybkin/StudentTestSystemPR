@@ -84,7 +84,7 @@ public class GeographyTestCommand implements Command {
         }
 
 
-        request.setAttribute("testt", "testt");
+
         request.setAttribute("count", count);
         request.setAttribute("geographytest", questions);
         session.setAttribute("statistic", statistic);

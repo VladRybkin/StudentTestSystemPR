@@ -26,6 +26,11 @@ public class UserService  {
             return dao.findAll();
         }
     }
+    public List<User> findAllWithLimit(int from, int to) {
+        try (UserDao dao = daoFactory.createUserDao()) {
+            return dao.findAllWithLimit(from, to);
+        }
+    }
 
     public void update(User user, int id) {
         try (UserDao dao = daoFactory.createUserDao()) {

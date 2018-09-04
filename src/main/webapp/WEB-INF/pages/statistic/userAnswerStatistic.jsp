@@ -15,14 +15,19 @@
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language: pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="loc" var="rb"/>
-<form method="get">
+<form>
     <input name="language" type="image" value="en_US"
     ${language=='en_US' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/United-States-Flag-icon.png" style="height: 35px; width: 35px;">
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
+</form>
+<br>
+<fmt:message key="login" bundle="${rb}" />: <c:out value="${sessionScope.userLogin}"/><br/>
+<fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.role}"/><br/>
+<label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
+<br><br>
 
-
-
+<form method="get">
 
 
     <div class="content-box-large">
@@ -89,15 +94,6 @@
     </c:if>
 
 
-
-
-
-
-
-
-
-
-
 </form>
 
 
@@ -107,7 +103,9 @@
 
 
 
-
+<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick="">userAnswerStats</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 
 
 
@@ -116,3 +114,4 @@
 
 
 </body>
+</html>

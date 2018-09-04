@@ -27,6 +27,7 @@ public class JDBCUserDao implements UserDao {
     private final String FIND_COURSES_BY_USER_ID_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) WHERE user_id=";
     private final String FIND_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ?";
     private final String FIND_ALL_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) " + "LEFT JOIN user_answers USING(user_id) LEFT JOIN test_results USING(user_id)";
+    private final String FIND_ALL_QUERY_WITH_LIMIT = "SELECT * FROM users limit ";
     private final String UPDATE_QUERY = "UPDATE users SET user_login = ? , user_password = ?, user_role=?, user_mail=? WHERE user_id = ";
     private final String DELETE_QUERY = "DELETE FROM users  WHERE user_id = ?";
     private final String GET_USER_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
@@ -131,6 +132,21 @@ public class JDBCUserDao implements UserDao {
                 user.getUserAnswers().add(userAnswer);
                 user.getTestResults().add(testResult);
 
+                users.put(user.getId(), user);
+            }
+        } catch (SQLException e) {
+            log.log(org.apache.log4j.Level.INFO, e);
+        }
+        return new ArrayList<>(users.values());
+    }
+    @Override
+    public List<User> findAllWithLimit(int from, int to) {
+        Map<Integer, User> users = new HashMap<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_QUERY_WITH_LIMIT+ from+", "+to);
+            while (resultSet.next()) {
+                User user = userMapper.extractFromResultSet(resultSet);
                 users.put(user.getId(), user);
             }
         } catch (SQLException e) {

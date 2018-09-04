@@ -48,11 +48,17 @@ public class JDBCTestResultDao implements TestResultDao {
         Extract(testResults, findAllQuery);
         return new ArrayList<>(testResults.values());
     }
+    @Override
+    public List<TestResult> findAllWithLimit(int from, int to) {
+        Map<Integer, TestResult> testResults = new HashMap<>();
+        Extract(testResults, findAllQuery+" limit "+ from+", "+to);
+        return new ArrayList<>(testResults.values());
+    }
 
     @Override
-    public List<TestResult> findAllByUserId(int id, int currentPage, int recordsPerPage) {
+    public List<TestResult> findAllByUserId(int id, int from, int to) {
         Map<Integer, TestResult> testResults = new HashMap<>();
-        Extract(testResults, findAllByUserId + id+" limit "+ currentPage+", "+recordsPerPage);
+        Extract(testResults, findAllByUserId + id+" limit "+ from+", "+to);
         return new ArrayList<>(testResults.values());
     }
 
