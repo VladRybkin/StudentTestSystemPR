@@ -21,7 +21,7 @@ public class TestResultServiceTest {
 
     @Test
     public void findAllByUserId() {
-        assertTrue(testResultService.findAllByUserId(2).size()>0);
+        assertTrue(testResultService.findAllByUserId(2, 1, 10000).size()>0);
     }
 
     @Test

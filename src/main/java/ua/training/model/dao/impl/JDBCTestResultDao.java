@@ -50,9 +50,9 @@ public class JDBCTestResultDao implements TestResultDao {
     }
 
     @Override
-    public List<TestResult> findAllByUserId(int id) {
+    public List<TestResult> findAllByUserId(int id, int currentPage, int recordsPerPage) {
         Map<Integer, TestResult> testResults = new HashMap<>();
-        Extract(testResults, findAllByUserId + id);
+        Extract(testResults, findAllByUserId + id+" limit "+ currentPage+", "+recordsPerPage);
         return new ArrayList<>(testResults.values());
     }
 

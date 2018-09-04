@@ -28,9 +28,9 @@ public class TestResultService {
         }
     }
 
-    public List<TestResult> findAllByUserId(int id) {
+    public List<TestResult> findAllByUserId(int id, int currentPage, int recordsPerPage) {
         try (TestResultDao dao = daoFactory.createTestResultDao()) {
-            return dao.findAllByUserId(id);
+            return dao.findAllByUserId(id, currentPage, recordsPerPage);
         }
     }
 

@@ -25,7 +25,7 @@ public class UserAnswerStatistic implements Command {
 
 
 
-        int noOfRecords=userAnswerService.findAllByUserId(user.getId(), 1, 1000).size();
+        int noOfRecords=userAnswerService.findAllByUserId(user.getId(), 1, 10000).size();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
         request.setAttribute("noOfPages", noOfPages);
