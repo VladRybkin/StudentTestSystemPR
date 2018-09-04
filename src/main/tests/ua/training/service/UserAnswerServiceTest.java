@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UserAnswerServiceTest {
-
+UserAnswerService userAnswerService=new UserAnswerService();
     @Test
     public void create() {
     }
@@ -16,6 +16,7 @@ public class UserAnswerServiceTest {
 
     @Test
     public void findById() {
+       assertEquals(userAnswerService.findById(8).getId(), 8);
     }
 
     @Test
@@ -32,9 +33,11 @@ public class UserAnswerServiceTest {
 
     @Test
     public void findAll() {
+        assertTrue(userAnswerService.findAll().size()>0);
     }
 
     @Test
     public void findAllByUserId() {
+        assertTrue(userAnswerService.findAllByUserId(2).size()>0);
     }
 }
