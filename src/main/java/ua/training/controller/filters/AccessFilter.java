@@ -1,18 +1,17 @@
 package ua.training.controller.filters;
 
-import ua.training.model.entity.User;
 
+import ua.training.model.entity.User;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AccessFilter implements Filter {
     private List<String> studentPages = new ArrayList<>();
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         studentPages.add("/api/astronomyCourse");

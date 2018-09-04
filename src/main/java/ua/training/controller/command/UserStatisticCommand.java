@@ -23,7 +23,8 @@ public class UserStatisticCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int page = 1;
         int recordsPerPage = 10;
-        if(request.getParameter("page") != null) {page = Integer.parseInt(request.getParameter("page"));}
+        if(request.getParameter("page") != null)
+        {page = Integer.parseInt(request.getParameter("page"));}
 
         User user=(User) request.getSession().getAttribute("userFromLogin");
         List<TestResult>testResults=testResultService.findAllByUserId(user.getId());

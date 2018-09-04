@@ -14,6 +14,7 @@ public class LoginCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        CommandUtility commandUtility=new CommandUtility();
         LoginService loginService = new LoginService();
         User.Role role = User.Role.UNKNOWN;
         User user=null;
@@ -29,19 +30,19 @@ public class LoginCommand implements Command {
         if (login == null || login.equals("") || password == null || password.equals("")) {
             return "/WEB-INF/pages/regAndLog/login.jsp";
         }
-        if(CommandUtility.checkUserIsLogged(request, user.getLogin())){
+        if(commandUtility.checkUserIsLogged(request, user.getLogin())){
             return "redirect:/api/error";
         }
 
 
         if (String.valueOf(role).equals("ADMIN")) {
-            CommandUtility.setUserRole(request, User.Role.ADMIN, login);
+            commandUtility.setUserRole(request, User.Role.ADMIN, login);
             return "redirect:/api/admin_page";
         } else if (String.valueOf(role).equals("STUDENT")) {
-            CommandUtility.setUserRole(request, User.Role.STUDENT, login);
+            commandUtility.setUserRole(request, User.Role.STUDENT, login);
             return "redirect:/api/student_page";
         } else {
-            CommandUtility.setUserRole(request, User.Role.UNKNOWN, login);
+            commandUtility.setUserRole(request, User.Role.UNKNOWN, login);
             return "redirect:/api/login";
         }
 

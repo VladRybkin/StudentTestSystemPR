@@ -12,7 +12,13 @@ import java.util.Map;
 
 public class JDBCUserAnswerDao implements UserAnswerDao {
     private Connection connection;
-    UserAnswerMapper userAnswerMapper = new UserAnswerMapper();
+    private UserAnswerMapper userAnswerMapper = new UserAnswerMapper();
+    private final String createQuery = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" + "VALUES\n" + "(?, ?, ?, ?);";
+    private final String findAllByUserIdQuery = "SELECT * FROM user_answers right join users using(user_id) WHERE user_id=";
+    private final String findAllQuery = "SELECT * FROM user_answers RIGHT JOIN users USING(user_id);";
+    private final String updateQuery = "UPDATE statistic SET user_id = ? , test_result_id= ? WHERE user_id = ?";
+    private final String deleteQuery = "DELETE FROM stastistic  WHERE user_id = ?";
+
 
     public JDBCUserAnswerDao(Connection connection) {
         this.connection = connection;
@@ -20,10 +26,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
 
     @Override
     public void create(UserAnswer userAnswer) {
-        final String query = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" +
-                "VALUES\n" +
-                "(?, ?, ?, ?);";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
             userAnswerMapper.setParameters(ps, userAnswer);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -32,13 +35,10 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     }
 
     @Override
-    public void insertUserAnswers(UserAnswer ... userAnswers) throws SQLException {
-        final String query = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" +
-                "VALUES\n" +
-                "(?, ?, ?, ?);";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+    public void insertUserAnswers(UserAnswer... userAnswers) throws SQLException {
+        try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
             connection.setAutoCommit(false);
-            for (UserAnswer userAnswer:userAnswers){
+            for (UserAnswer userAnswer : userAnswers) {
                 userAnswerMapper.setParameters(ps, userAnswer);
                 ps.executeUpdate();
             }
@@ -58,9 +58,9 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     @Override
     public List<UserAnswer> findAll() {
         Map<Integer, UserAnswer> userAnswers = new HashMap<>();
-        final String query = "SELECT * FROM user_answers RIGHT JOIN users USING(user_id);";
 
-        Extract(userAnswers, query);
+
+        Extract(userAnswers, findAllQuery);
 
         return new ArrayList<>(userAnswers.values());
 
@@ -69,9 +69,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     @Override
     public List<UserAnswer> findAllByUserId(int id) {
         Map<Integer, UserAnswer> userAnswers = new HashMap<>();
-        final String query = "SELECT * FROM user_answers right join users using(user_id) WHERE user_id=" + id;
-
-        Extract(userAnswers, query);
+        Extract(userAnswers, findAllByUserIdQuery + id);
 
         return new ArrayList<>(userAnswers.values());
 
@@ -97,8 +95,8 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
 
     @Override
     public void update(UserAnswer statistic) {
-        final String query = "UPDATE statistic SET user_id = ? , test_result_id= ? WHERE user_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
             userAnswerMapper.setParameters(ps, statistic);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -108,7 +106,8 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
 
     @Override
     public void delete(int id) {
-        try (PreparedStatement ps = connection.prepareStatement("DELETE FROM stastistic  WHERE user_id = ?")) {
+
+        try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {

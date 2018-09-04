@@ -44,9 +44,6 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
 
-
-
-
     }
 
     @Override
@@ -67,8 +64,5 @@ public class Servlet extends HttpServlet {
         } else {
             request.getRequestDispatcher(page).forward(request, response);
         }
-
-
-//
     }
 }

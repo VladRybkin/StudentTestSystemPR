@@ -25,9 +25,7 @@ public class JDBCUserDao implements UserDao {
     private final String FIND_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ?";
     private final String FIND_ALL_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) " + "LEFT JOIN user_answers USING(user_id) LEFT JOIN test_results USING(user_id)";
     private final String UPDATE_QUERY = "UPDATE users SET user_login = ? , user_password = ?, user_role=?, user_mail=? WHERE user_id = ?";
-    private final String USER_IS_EXIST_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
     private final String DELETE_QUERY = "DELETE FROM users  WHERE user_id = ?";
-    private final String GET_ROLE_BY_LOGIN_AND_PASS_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
     private final String GET_USER_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
 
     JDBCUserDao(Connection connection) {
@@ -36,7 +34,6 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void create(User user) {
-
         try (PreparedStatement ps = connection.prepareStatement(CREATE_QUERY)) {
             userMapper.setParameters(ps, user);
 
@@ -48,7 +45,6 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public User findById(int id) {
-
         User user = null;
         try {
             Statement statement = connection.createStatement();
@@ -66,7 +62,6 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public User findCoursesByUserId(int id) {
-
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(FIND_COURSES_BY_USER_ID_QUERY + id);
@@ -87,8 +82,8 @@ public class JDBCUserDao implements UserDao {
 
     }
 
-    public User findByLogin(String login) {
 
+    public User findByLogin(String login) {
         try (PreparedStatement ps = connection.prepareStatement
                 (FIND_BY_LOGIN_QUERY)) {
             ps.setString(1, login);
@@ -102,6 +97,7 @@ public class JDBCUserDao implements UserDao {
         }
         return null;
     }
+
 
     @Override
     public List<User> findAll() {
@@ -140,6 +136,7 @@ public class JDBCUserDao implements UserDao {
         return new ArrayList<>(users.values());
     }
 
+
     @Override
     public void update(User user) {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY)) {
@@ -151,9 +148,9 @@ public class JDBCUserDao implements UserDao {
         }
     }
 
+
     @Override
     public void delete(int id) {
-
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -162,59 +159,6 @@ public class JDBCUserDao implements UserDao {
         }
     }
 
-    @Override
-    public boolean userIsExists(String userLogin, String userPassword) {
-
-        ResultSet resultSet;
-        List<User> users = new ArrayList<>();
-        UserMapper userMapper = new UserMapper();
-
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(USER_IS_EXIST_QUERY)) {
-
-            preparedStatement.setString(1, userLogin);
-            preparedStatement.setString(2, userPassword);
-
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                User user = userMapper.extractFromResultSet(resultSet);
-                users.add(user);
-            }
-            if (!users.isEmpty()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    @Override
-    public User.Role getRoleByLoginAndPass(String login, String password) {
-
-        User.Role role = null;
-
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(GET_ROLE_BY_LOGIN_AND_PASS_QUERY)) {
-
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password);
-
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                resultSet.next();
-
-                role = User.Role.valueOf((resultSet.getString("user_role")));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return role;
-    }
 
     @Override
     public User getUserByLoginAndPassword(String userLogin, String userPassword) {
@@ -222,18 +166,18 @@ public class JDBCUserDao implements UserDao {
         User user = new User();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN_QUERY) ;
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN_QUERY);
             preparedStatement.setString(1, userLogin);
             preparedStatement.setString(2, userPassword);
             ResultSet resultSet = preparedStatement.executeQuery();
-                resultSet.next();
-                user = userMapper.extractFromResultSet(resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            resultSet.next();
+            user = userMapper.extractFromResultSet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return user;
-        }
+    }
 
 
     @Override
