@@ -9,10 +9,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JDBCTestResultDao implements TestResultDao {
     private Connection connection;
     private TestResultMapper testResultMapper = new TestResultMapper();
+    private static Logger log = Logger.getLogger(JDBCTestResultDao.class.getName());
+    final String createQuery = "INSERT INTO test_results(test_result_category,test_result, user_id)VALUES(?, ?, ?)";
+    final String findAllQuery = "SELECT * FROM test_results RIGHT JOIN users USING (user_id)";
+    final String findAllByUserId = "SELECT * FROM test_results RIGHT JOIN users USING (user_id) WHERE user_id=";
+    final String updateQuery = "UPDATE test_results SET test_result_category = ? , test_result = ? WHERE test_result_id = ?";
+    final String deleteQuery = "DELETE FROM test_results  WHERE test_result_id = ?";
+
 
     public JDBCTestResultDao(Connection connection) {
         this.connection = connection;
@@ -21,13 +30,12 @@ public class JDBCTestResultDao implements TestResultDao {
 
     @Override
     public void create(TestResult testResult) {
-        final String query = "INSERT INTO test_results(test_result_category,test_result, user_id)VALUES(?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
 
+        try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
             testResultMapper.setParameters(ps, testResult);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -39,9 +47,7 @@ public class JDBCTestResultDao implements TestResultDao {
     @Override
     public List<TestResult> findAll() {
         Map<Integer, TestResult> testResults = new HashMap<>();
-        final String query = "SELECT * FROM test_results RIGHT JOIN users USING (user_id)";
-
-        Extract(testResults, query);
+        Extract(testResults, findAllQuery);
 
         return new ArrayList<>(testResults.values());
 
@@ -50,10 +56,7 @@ public class JDBCTestResultDao implements TestResultDao {
     @Override
     public List<TestResult> findAllByUserId(int id) {
         Map<Integer, TestResult> testResults = new HashMap<>();
-        final String query = "SELECT * FROM test_results RIGHT JOIN users USING (user_id) WHERE user_id=" + id;
-
-        Extract(testResults, query);
-
+        Extract(testResults, findAllByUserId + id);
         return new ArrayList<>(testResults.values());
 
     }
@@ -70,7 +73,7 @@ public class JDBCTestResultDao implements TestResultDao {
                 testResults.put(testResult.getId(), testResult);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Exception: ", e);
 
         }
     }
@@ -78,22 +81,21 @@ public class JDBCTestResultDao implements TestResultDao {
 
     @Override
     public void update(TestResult testResult) {
-        final String query = "UPDATE test_results SET test_result_category = ? , test_result = ? WHERE test_result_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
             testResultMapper.setParameters(ps, testResult);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
     @Override
     public void delete(int id) {
-        try (PreparedStatement ps = connection.prepareStatement("DELETE FROM test_results  WHERE test_result_id = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -102,7 +104,7 @@ public class JDBCTestResultDao implements TestResultDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 

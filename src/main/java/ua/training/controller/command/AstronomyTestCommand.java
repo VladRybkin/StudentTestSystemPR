@@ -79,7 +79,7 @@ public class AstronomyTestCommand implements Command {
             }
         }
 
-        if (userAnswer1 != null) {
+        if (userAnswer1 != null && userAnswer2 != null && userAnswer3 != null && userAnswer4 != null && userAnswer5 != null) {
             addTestResultToDatabase(result);
         }
 

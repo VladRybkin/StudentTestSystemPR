@@ -11,9 +11,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JDBCCourseDao implements CourseDao {
     private Connection connection;
+    private static Logger log = Logger.getLogger(JDBCCourseDao.class.getName());
     private CourseMapper courseMapper = new CourseMapper();
 
     public JDBCCourseDao(Connection connection) {
@@ -28,26 +31,27 @@ public class JDBCCourseDao implements CourseDao {
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception:", e);
+
         }
     }
 
     @Override
     public Course findById(int id) {
-
+        Course course=null;
         try (PreparedStatement ps = connection.prepareStatement
                 ("SELECT * FROM courses WHERE course_id = ?")) {
-            Course course=null;
+
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                 course = courseMapper.extractFromResultSet(rs);
-
+                course = courseMapper.extractFromResultSet(rs);
             }
-            return course;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        }catch (SQLException e) {
+            log.log(Level.SEVERE, "Exception: ", e);
         }
+            return course;
+
 
     }
 
@@ -68,7 +72,7 @@ public class JDBCCourseDao implements CourseDao {
                 courses.put(course.getId(), course);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Exception: ", e);;
         }
 
         return new ArrayList<>(courses.values());
@@ -82,7 +86,7 @@ public class JDBCCourseDao implements CourseDao {
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -92,7 +96,7 @@ public class JDBCCourseDao implements CourseDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -101,7 +105,7 @@ public class JDBCCourseDao implements CourseDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception:", e);
         }
     }
 
@@ -111,7 +115,7 @@ public class JDBCCourseDao implements CourseDao {
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 }

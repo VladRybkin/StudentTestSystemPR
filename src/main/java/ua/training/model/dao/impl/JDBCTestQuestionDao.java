@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JDBCTestQuestionDao implements TestQuestionDao {
     private Connection connection;
     private TestQuestionMapper testQuestionMapper = new TestQuestionMapper();
-
+    private static Logger log = Logger.getLogger(JDBCTestQuestionDao.class.getName());
     public JDBCTestQuestionDao(Connection connection) {
         this.connection = connection;
     }
@@ -26,7 +28,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             testQuestionMapper.setParameters(ps, testQuestion);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -51,7 +53,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
                 testQuestions.put(testQuestion.getId(), testQuestion);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Exception: ", e);
 
         }
 
@@ -77,7 +79,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
 
             return new ArrayList<>(testQuestions.values());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Exception: ", e);
             return null;
         }
     }
@@ -90,7 +92,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             testQuestionMapper.setParameters(ps, testQuestion);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -100,7 +102,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -109,7 +111,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 }

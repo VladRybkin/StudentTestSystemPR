@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JDBCUserAnswerDao implements UserAnswerDao {
     private Connection connection;
     private UserAnswerMapper userAnswerMapper = new UserAnswerMapper();
+    private static Logger log = Logger.getLogger(JDBCUserAnswerDao.class.getName());
     private final String createQuery = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" + "VALUES\n" + "(?, ?, ?, ?);";
     private final String findAllByUserIdQuery = "SELECT * FROM user_answers right join users using(user_id) WHERE user_id=";
     private final String findAllQuery = "SELECT * FROM user_answers RIGHT JOIN users USING(user_id);";
@@ -30,7 +33,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
             userAnswerMapper.setParameters(ps, userAnswer);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -85,10 +88,9 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
                 userAnswer = userAnswerMapper.makeUnique(userAnswers, userAnswer);
                 userAnswers.put(userAnswer.getId(), userAnswer);
 
-
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Exception: ", e);
 
         }
     }
@@ -100,7 +102,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
             userAnswerMapper.setParameters(ps, statistic);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 

@@ -8,9 +8,12 @@ import ua.training.model.entity.TestQuestion;
 
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JDBCTestDao implements TestDao {
     private Connection connection;
+    private static Logger log = Logger.getLogger(JDBCTestDao.class.getName());
     private TestMapper testMapper = new TestMapper();
 
     public JDBCTestDao(Connection connection) {
@@ -25,7 +28,7 @@ public class JDBCTestDao implements TestDao {
             testMapper.setParameters(ps, test);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
 
     }
@@ -58,7 +61,7 @@ public class JDBCTestDao implements TestDao {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, "Exception: ", e);
 
         }
 
@@ -73,7 +76,7 @@ public class JDBCTestDao implements TestDao {
             testMapper.setParameters(ps, test);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -83,7 +86,7 @@ public class JDBCTestDao implements TestDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 
@@ -92,7 +95,7 @@ public class JDBCTestDao implements TestDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(Level.SEVERE, "Exception: ", e);
         }
     }
 }

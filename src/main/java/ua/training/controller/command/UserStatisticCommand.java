@@ -38,7 +38,6 @@ public class UserStatisticCommand implements Command {
 
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
-
         request.setAttribute("userStatistic", testResults);
         request.setAttribute("userAnswerStatistic", userAnswers);
 

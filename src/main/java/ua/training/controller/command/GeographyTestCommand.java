@@ -79,7 +79,7 @@ public class GeographyTestCommand implements Command {
             }
         }
 
-        if (userAnswer1 != null) {
+        if (userAnswer1 != null && userAnswer2 != null && userAnswer3 != null && userAnswer4 != null && userAnswer5 != null) {
             addTestResultToDatabase(result);
         }
 
@@ -93,8 +93,6 @@ public class GeographyTestCommand implements Command {
         request.setAttribute("Gthird", questions.get(2).getQuestion());
         request.setAttribute("Gfourth", questions.get(3).getQuestion());
         request.setAttribute("Gfifth", questions.get(4).getQuestion());
-
-
 
 
         return "/WEB-INF/pages/tests/geographyTest.jsp";
@@ -118,8 +116,7 @@ public class GeographyTestCommand implements Command {
         result.setCategory("GEOGRAPHY");
         if (count == 0) {
             result.setResult(0);
-        }
-        else {
+        } else {
             result.setResult(100d / (5d / count));
         }
 
@@ -133,8 +130,8 @@ public class GeographyTestCommand implements Command {
     }
 
 
-    private void addStatsToDatabase(List<UserAnswer>statistic) throws SQLException {
-        userAnswerService.insertUserAnswers( statistic.get(0),statistic.get(1),statistic.get(2),statistic.get(3),statistic.get(4));
+    private void addStatsToDatabase(List<UserAnswer> statistic) throws SQLException {
+        userAnswerService.insertUserAnswers(statistic.get(0), statistic.get(1), statistic.get(2), statistic.get(3), statistic.get(4));
     }
 
     private void setUserToResult(TestResult result, User user) {

@@ -130,27 +130,10 @@
         <td><a href="user_statistic.jsp?page=${currentPage + 1}">Next</a></td>
     </c:if>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </form>
 
 <br>
-<%--results: <c:out value="${userResults}"/><br/>--%>
+
 <label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 </body>
