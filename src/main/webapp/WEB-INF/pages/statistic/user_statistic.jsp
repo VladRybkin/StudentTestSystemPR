@@ -72,7 +72,7 @@
             <div class="panel-title"><fmt:message key="user.answers.statistic" bundle="${rb}" /></div>
         </div>
         <div class="panel-body">
-            <table cellpadding="5" cellspacing="5" border="1" class="table table-striped table-bordered" >
+            <table cellpadding="" cellspacing="0" border="0" class="table table-striped table-bordered" >
                 <thead>
                 <tr class="mySuprerClass">
                     <th>Id</th>

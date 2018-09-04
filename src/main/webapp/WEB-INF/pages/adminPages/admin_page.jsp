@@ -102,7 +102,7 @@
 
     <%--For displaying Page numbers.
     The when condition does not display a link for the current page--%>
-    <table border="1" cellpadding="5" cellspacing="5">
+    <table border="0" cellpadding="0" cellspacing="0">
         <tr>
             <c:forEach begin="1" end="${noOfPages}" var="i">
                 <c:choose>
