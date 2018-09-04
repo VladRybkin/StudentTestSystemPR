@@ -72,7 +72,7 @@
             <div class="panel-title"><fmt:message key="user.answers.statistic" bundle="${rb}" /></div>
         </div>
         <div class="panel-body">
-            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
+            <table cellpadding="5" cellspacing="5" border="1" class="table table-striped table-bordered" >
                 <thead>
                 <tr class="mySuprerClass">
                     <th>Id</th>
@@ -105,7 +105,7 @@
 
     <%--For displaying Previous link except for the 1st page --%>
     <c:if test="${currentPage != 1}">
-        <td><a href="user_statistic.jsp?page=${currentPage - 1}">Previous</a></td>
+        <td><a href="/api/user_statistic?page=${currentPage - 1}">Previous</a></td>
     </c:if>
 
     <%--For displaying Page numbers.
@@ -118,7 +118,7 @@
                         <td>${i}</td>
                     </c:when>
                     <c:otherwise>
-                        <td><a href="user_statistic.jsp?page=${i}">${i}</a></td>
+                        <td><a href="/api/user_statistic?page=${i}">${i}</a></td>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
@@ -127,7 +127,7 @@
 
     <%--For displaying Next link --%>
     <c:if test="${currentPage lt noOfPages}">
-        <td><a href="user_statistic.jsp?page=${currentPage + 1}">Next</a></td>
+        <td><a href="/api/user_statistic?page=${currentPage + 1}">Next</a></td>
     </c:if>
 
 </form>

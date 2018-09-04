@@ -18,11 +18,21 @@ public class AdminPageCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserService userService = new UserService();
         TestResultService testResultService =new TestResultService();
+        int page = 1;
+        int recordsPerPage = 5;
+        if(request.getParameter("page") != null)
+        {page = Integer.parseInt(request.getParameter("page"));}
         List<User> users=userService.findAll();
         List<TestResult>testResults= testResultService.findAll();
+
+        int noOfRecords=100;
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
         Collections.sort(testResults, new TestResultComparator());
         Collections.sort(users, new UserComparator());
 
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
         request.setAttribute("testResults", testResults);
         request.setAttribute("studentStats", users);
         return "/WEB-INF/pages/adminPages/admin_page.jsp";

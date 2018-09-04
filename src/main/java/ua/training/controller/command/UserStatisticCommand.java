@@ -22,7 +22,7 @@ public class UserStatisticCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int page = 1;
-        int recordsPerPage = 10;
+        int recordsPerPage = 5;
         if(request.getParameter("page") != null)
         {page = Integer.parseInt(request.getParameter("page"));}
 
