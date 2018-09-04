@@ -13,23 +13,21 @@ public class CourseService {
 
     public void create(Course course) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
-             dao.create(course);
+            dao.create(course);
         }
     }
-    public void insertStudentCourses(int userId, int courseId){
+
+    public void insertStudentCourses(int userId, int courseId) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
             dao.insertStudentCourses(userId, courseId);
         }
     }
-
-
 
     public Course findById(int id) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
             return dao.findById(id);
         }
     }
-
 
     public List<Course> findAll() {
         try (CourseDao dao = daoFactory.createCourseDao()) {
@@ -38,20 +36,17 @@ public class CourseService {
     }
 
 
-
     public void update(Course course, int id) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
             dao.update(course, id);
         }
     }
 
-
     public void delete(int id) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
             dao.delete(id);
         }
     }
-
 
     public void close() {
         try (CourseDao dao = daoFactory.createCourseDao()) {

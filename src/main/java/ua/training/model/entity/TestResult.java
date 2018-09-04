@@ -5,6 +5,7 @@ public class TestResult {
     private String category;
     private double result;
     private User user;
+
     public TestResult() {
     }
 

@@ -16,19 +16,17 @@ public class UserAnswerService {
         }
     }
 
-    public void insertUserAnswers(UserAnswer ... userAnswers) throws SQLException {
+    public void insertUserAnswers(UserAnswer... userAnswers) throws SQLException {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
             dao.insertUserAnswers(userAnswers);
         }
     }
-
 
     public UserAnswer findById(int id) {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
             return dao.findById(id);
         }
     }
-
 
     public void update(UserAnswer statistic, int id) {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
@@ -43,7 +41,6 @@ public class UserAnswerService {
         }
     }
 
-
     public void close() {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
             {
@@ -51,7 +48,6 @@ public class UserAnswerService {
             }
         }
     }
-
 
     public List<UserAnswer> findAll() {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
@@ -61,12 +57,12 @@ public class UserAnswerService {
 
         }
     }
+
     public List<UserAnswer> findAllByUserId(int id) {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
             {
                 return dao.findAllByUserId(id);
             }
-
         }
     }
 }

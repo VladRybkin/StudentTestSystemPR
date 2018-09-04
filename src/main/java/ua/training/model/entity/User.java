@@ -9,10 +9,9 @@ public class User {
     private String password;
     private Role role;
     private String email;
-    private List<Course>courses=new ArrayList<>();
-    private List<TestResult>testResults=new ArrayList<>();
-    private List<UserAnswer>userAnswers=new ArrayList<>();
-
+    private List<Course> courses = new ArrayList<>();
+    private List<TestResult> testResults = new ArrayList<>();
+    private List<UserAnswer> userAnswers = new ArrayList<>();
 
     public enum Role {
         ADMIN, STUDENT, UNKNOWN

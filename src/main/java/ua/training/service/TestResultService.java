@@ -6,7 +6,7 @@ import ua.training.model.entity.TestResult;
 
 import java.util.List;
 
-public class TestResultService  {
+public class TestResultService {
     DaoFactory daoFactory = DaoFactory.getInstance();
 
 
@@ -16,23 +16,20 @@ public class TestResultService  {
         }
     }
 
-
     public TestResult findById(int id) {
         try (TestResultDao dao = daoFactory.createTestResultDao()) {
             return dao.findById(id);
         }
     }
 
-
     public List<TestResult> findAll() {
-        try (TestResultDao dao = daoFactory.createTestResultDao())
-        {
+        try (TestResultDao dao = daoFactory.createTestResultDao()) {
             return dao.findAll();
         }
     }
-   public List<TestResult> findAllByUserId(int id) {
-        try (TestResultDao dao = daoFactory.createTestResultDao())
-        {
+
+    public List<TestResult> findAllByUserId(int id) {
+        try (TestResultDao dao = daoFactory.createTestResultDao()) {
             return dao.findAllByUserId(id);
         }
     }
@@ -43,14 +40,11 @@ public class TestResultService  {
         }
     }
 
-
     public void delete(int id) {
         try (TestResultDao dao = daoFactory.createTestResultDao()) {
             dao.delete(id);
         }
     }
-
-
 
     public void close() {
         try (TestResultDao dao = daoFactory.createTestResultDao()) {

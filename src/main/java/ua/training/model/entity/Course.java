@@ -7,7 +7,7 @@ public class Course {
     private int id;
     private String category;
     private String status;
-    private List<User>users=new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
 
     public int getId() {

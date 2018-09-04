@@ -7,7 +7,7 @@ import ua.training.model.entity.Test;
 
 import java.util.List;
 
-public class TestService{
+public class TestService {
     DaoFactory daoFactory = DaoFactory.getInstance();
 
 
@@ -24,28 +24,23 @@ public class TestService{
         }
     }
 
-
     public List<Test> findAll() {
-        try (TestDao dao = daoFactory.createTestDao())
-        {
+        try (TestDao dao = daoFactory.createTestDao()) {
             return dao.findAll();
         }
     }
 
-
     public void update(Test test, int id) {
         try (TestDao dao = daoFactory.createTestDao()) {
-           dao.update(test, id);
+            dao.update(test, id);
         }
     }
-
 
     public void delete(int id) {
         try (TestDao dao = daoFactory.createTestDao()) {
             dao.delete(id);
         }
     }
-
 
     public void close() {
         try (TestDao dao = daoFactory.createTestDao()) {

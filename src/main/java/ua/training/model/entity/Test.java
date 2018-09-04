@@ -6,7 +6,7 @@ import java.util.List;
 public class Test {
     private int id;
     private String category;
-    private List<TestQuestion> questions= new ArrayList<>();
+    private List<TestQuestion> questions = new ArrayList<>();
 
     public Test() {
     }

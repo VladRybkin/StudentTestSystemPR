@@ -11,18 +11,15 @@ public class UserService  {
 
 
     public User findById(int id) {
-
         try (UserDao dao = daoFactory.createUserDao()) {
            return dao.findById(id);
         }
     }
     public User findCoursesByUserId(int id) {
-
         try (UserDao dao = daoFactory.createUserDao()) {
             return dao.findCoursesByUserId(id);
         }
     }
-
 
     public List<User> findAll() {
         try (UserDao dao = daoFactory.createUserDao()) {
@@ -30,17 +27,13 @@ public class UserService  {
         }
     }
 
-
     public void update(User user, int id) {
-
         try (UserDao dao = daoFactory.createUserDao()) {
             dao.update(user, id);
         }
     }
 
-
     public void delete(int id) {
-
         try (UserDao dao = daoFactory.createUserDao()) {
             dao.delete(id);
         }
@@ -52,9 +45,7 @@ public class UserService  {
         }
     }
 
-
     public void close() {
-
         try (UserDao dao = daoFactory.createUserDao()) {
             dao.close();
         }
