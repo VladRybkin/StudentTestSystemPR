@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestQuestionServiceTest {
-    TestQuestionService testQuestionService=new TestQuestionService();
+    private TestQuestionService testQuestionService=new TestQuestionService();
     @Test
     public void create() {
     }
