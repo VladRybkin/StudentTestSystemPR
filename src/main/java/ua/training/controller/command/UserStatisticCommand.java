@@ -21,26 +21,10 @@ public class UserStatisticCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int page = 1;
-        int recordsPerPage = 10;
-        if(request.getParameter("page") != null)
-        {page = Integer.parseInt(request.getParameter("page"));}
-
         User user=(User) request.getSession().getAttribute("userFromLogin");
         List<TestResult>testResults=testResultService.findAllByUserId(user.getId());
-        List<UserAnswer>userAnswers=userAnswerService.findAllByUserId(user.getId(), (page-1)*recordsPerPage, recordsPerPage);
-        Collections.sort(userAnswers, new UserAnswerComparator());
         Collections.sort(testResults, new TestResultComparator());
-
-        int noOfRecords=userAnswerService.findAllByUserId(user.getId(), 1, 1000).size();
-        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-
-
-        request.setAttribute("noOfPages", noOfPages);
-        request.setAttribute("currentPage", page);
         request.setAttribute("userStatistic", testResults);
-        request.setAttribute("userAnswerStatistic", userAnswers);
-
 
         return "/WEB-INF/pages/statistic/user_statistic.jsp";
     }

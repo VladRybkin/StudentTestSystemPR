@@ -67,73 +67,12 @@
     <br>
 
     <br>
-    <div class="content-box-large">
-        <div class="panel-heading">
-            <div class="panel-title"><fmt:message key="user.answers.statistic" bundle="${rb}" /></div>
-        </div>
-        <div class="panel-body">
-            <table cellpadding="" cellspacing="0" border="0" class="table table-striped table-bordered" >
-                <thead>
-                <tr class="mySuprerClass">
-                    <th>Id</th>
 
-                    <th><fmt:message key="test.question" bundle="${rb}" /></th>
-                    <th><fmt:message key="user.answer" bundle="${rb}" /></th>
-                    <th><fmt:message key="correct.answer" bundle="${rb}" /></th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <c:forEach var="i" items="${requestScope.userAnswerStatistic}">
-                    <tr >
-                        <td class="center"><c:out value="${i.id}"/></td>
-                        <td class="center"><c:out value="${i.testQuestion}"/></td>
-                        <td class="center"><c:out value="${i.userAnswer}"/></td>
-                        <td class="center"><c:out value="${i.correctAnswer}"/></td>
-
-
-                    </tr>
-                </c:forEach>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-
-
-    <%--For displaying Previous link except for the 1st page --%>
-    <c:if test="${currentPage != 1}">
-        <td><a href="/api/user_statistic?page=${currentPage - 1}">Previous</a></td>
-    </c:if>
-
-    <%--For displaying Page numbers.
-    The when condition does not display a link for the current page--%>
-    <table border="1" cellpadding="5" cellspacing="5">
-        <tr>
-            <c:forEach begin="1" end="${noOfPages}" var="i">
-                <c:choose>
-                    <c:when test="${currentPage eq i}">
-                        <td>${i}</td>
-                    </c:when>
-                    <c:otherwise>
-                        <td><a href="/api/user_statistic?page=${i}">${i}</a></td>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-        </tr>
-    </table>
-
-    <%--For displaying Next link --%>
-    <c:if test="${currentPage lt noOfPages}">
-        <td><a href="/api/user_statistic?page=${currentPage + 1}">Next</a></td>
-    </c:if>
 
 </form>
 
 <br>
-
+<label><a href="${pageContext.request.contextPath}/api/userAnswerStatistic"><button onclick="">userAnswerStats</button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 </body>
