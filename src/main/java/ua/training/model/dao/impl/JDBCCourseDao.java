@@ -18,15 +18,20 @@ public class JDBCCourseDao implements CourseDao {
     private Connection connection;
     private static Logger log = Logger.getLogger(JDBCCourseDao.class.getName());
     private CourseMapper courseMapper = new CourseMapper();
+    private final String createQuery = "INSERT INTO courses(`course_status`,`course_category`)VALUES(?, ?)";
+    private final String findByIdQuery = "SELECT * FROM courses WHERE course_id = ?";
+    private final String findAllQuery = "SELECT * FROM courses";
+    private final String updateQuery = "UPDATE courses SET course_id = ?, course_status =?, course_category=? WHERE course_id = ?";
+    private final String deleteQuery = "DELETE FROM courses WHERE course_id = ?";
 
-    public JDBCCourseDao(Connection connection) {
+    JDBCCourseDao(Connection connection) {
         this.connection = connection;
     }
 
     @Override
     public void create(Course course) {
-        final String query = "INSERT INTO courses(`course_status`,`course_category`)VALUES(?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+
+        try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
 
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
@@ -38,19 +43,19 @@ public class JDBCCourseDao implements CourseDao {
 
     @Override
     public Course findById(int id) {
-        Course course=null;
+        Course course = null;
         try (PreparedStatement ps = connection.prepareStatement
-                ("SELECT * FROM courses WHERE course_id = ?")) {
+                (findByIdQuery)) {
 
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 course = courseMapper.extractFromResultSet(rs);
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             log.log(Level.SEVERE, "Exception: ", e);
         }
-            return course;
+        return course;
 
 
     }
@@ -59,10 +64,9 @@ public class JDBCCourseDao implements CourseDao {
     public List<Course> findAll() {
         Map<Integer, Course> courses = new HashMap<>();
         Map<Integer, User> users = new HashMap<>();
-        final String query = "SELECT * FROM courses";
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = statement.executeQuery(findAllQuery);
 
             UserMapper userMapper = new UserMapper();
 
@@ -72,7 +76,8 @@ public class JDBCCourseDao implements CourseDao {
                 courses.put(course.getId(), course);
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);;
+            log.log(Level.SEVERE, "Exception: ", e);
+            ;
         }
 
         return new ArrayList<>(courses.values());
@@ -81,8 +86,7 @@ public class JDBCCourseDao implements CourseDao {
 
     @Override
     public void update(Course course) {
-        final String query = "UPDATE courses SET course_id = ?, course_status =?, course_category=? WHERE course_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -92,7 +96,8 @@ public class JDBCCourseDao implements CourseDao {
 
     @Override
     public void delete(int id) {
-        try (PreparedStatement ps = connection.prepareStatement("DELETE FROM courses WHERE course_id = ?")) {
+
+        try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -111,8 +116,8 @@ public class JDBCCourseDao implements CourseDao {
 
     @Override
     public void insertStudentCourses(int userId, int courseId) {
-        final String query = "INSERT INTO student_courses(user_id, course_id)VALUES(" + userId + "," + courseId + ")";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        final String insertStudentCourses = "INSERT INTO student_courses(user_id, course_id)VALUES(" + userId + "," + courseId + ")";
+        try (PreparedStatement ps = connection.prepareStatement(insertStudentCourses)) {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(Level.SEVERE, "Exception: ", e);

@@ -23,7 +23,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     private final String deleteQuery = "DELETE FROM stastistic  WHERE user_id = ?";
 
 
-    public JDBCUserAnswerDao(Connection connection) {
+    JDBCUserAnswerDao(Connection connection) {
         this.connection = connection;
     }
 

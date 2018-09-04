@@ -55,10 +55,10 @@ public class JDBCUserDao implements UserDao {
             if (rs.next()) {
                 user = userMapper.extractFromResultSet(rs);
             }
-        }   catch (SQLException e) {
+        } catch (SQLException e) {
             log.log(Level.SEVERE, "Exception: ", e);
         }
-            return user;
+        return user;
 
 
     }
@@ -144,7 +144,6 @@ public class JDBCUserDao implements UserDao {
     public void update(User user) {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY)) {
             userMapper.setParameters(ps, user);
-
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(Level.SEVERE, "Exception: ", e);

@@ -15,16 +15,20 @@ public class JDBCTestDao implements TestDao {
     private Connection connection;
     private static Logger log = Logger.getLogger(JDBCTestDao.class.getName());
     private TestMapper testMapper = new TestMapper();
+    private final String createQuery = "INSERT INTO tests(`test_category`)VALUES(?)";
+    private final String findAllQuery = "SELECT * FROM tests LEFT JOIN test_questions USING(test_id)";
+    private final String updateQuery = "UPDATE tests SET test_category = ? WHERE test_id = ?";
+    private final String deleteQuery = "DELETE FROM tests WHERE test_id = ?";
 
-    public JDBCTestDao(Connection connection) {
+    JDBCTestDao(Connection connection) {
         this.connection = connection;
     }
 
+
     @Override
     public void create(Test test) {
-        final String query = "INSERT INTO tests(`test_category`)VALUES(?)";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
 
+        try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
             testMapper.setParameters(ps, test);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -42,10 +46,9 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAll() {
         Map<Integer, Test> tests = new HashMap<>();
         Map<Integer, TestQuestion> testQuestions = new HashMap<>();
-        final String query = "SELECT * FROM tests LEFT JOIN test_questions USING(test_id)";
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = statement.executeQuery(findAllQuery);
 
             TestQuestionMapper testQuestionMapper = new TestQuestionMapper();
             while (resultSet.next()) {
@@ -71,8 +74,7 @@ public class JDBCTestDao implements TestDao {
 
     @Override
     public void update(Test test) {
-        final String query = "UPDATE tests SET test_category = ? WHERE test_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
             testMapper.setParameters(ps, test);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -82,7 +84,7 @@ public class JDBCTestDao implements TestDao {
 
     @Override
     public void delete(int id) {
-        try (PreparedStatement ps = connection.prepareStatement("DELETE FROM tests WHERE test_id = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {

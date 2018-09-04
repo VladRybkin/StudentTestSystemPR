@@ -112,7 +112,7 @@ public class AstronomyTestCommand implements Command {
     }
 
     private void setTestResult(TestResult result, int count) {
-        result.setCategory("Astronomy");
+        result.setCategory("ASTRONOMY");
         result.setResult(count == 0 ? 0 : 100d / (5d / count));
 
     }
@@ -128,7 +128,7 @@ public class AstronomyTestCommand implements Command {
     }
 
     private void setUserToResult(TestResult result, User user) {
-        result.setCategory("GEOGRAPHY");
+        result.setCategory("ASTRONOMY");
         result.setUser(user);
     }
 
