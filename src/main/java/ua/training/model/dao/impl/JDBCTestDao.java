@@ -52,20 +52,15 @@ public class JDBCTestDao implements TestDao {
 
             TestQuestionMapper testQuestionMapper = new TestQuestionMapper();
             while (resultSet.next()) {
-
                 Test test = testMapper.extractFromResultSet(resultSet);
                 TestQuestion testQuestion = testQuestionMapper.extractFromResultSet(resultSet);
-
                 test = testMapper.makeUnique(tests, test);
                 testQuestion = testQuestionMapper.makeUnique(testQuestions, testQuestion);
                 test.getQuestions().add(testQuestion);
                 tests.put(test.getId(), test);
-
-
             }
         } catch (SQLException e) {
             log.log(Level.SEVERE, "Exception: ", e);
-
         }
 
         return new ArrayList<>(tests.values());
@@ -74,7 +69,7 @@ public class JDBCTestDao implements TestDao {
 
     @Override
     public void update(Test test, int id) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery + id)) {
             testMapper.setParameters(ps, test);
             ps.executeUpdate();
         } catch (SQLException e) {

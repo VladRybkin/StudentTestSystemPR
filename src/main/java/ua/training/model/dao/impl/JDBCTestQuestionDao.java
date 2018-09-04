@@ -29,7 +29,6 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
     @Override
     public void create(TestQuestion testQuestion) {
         try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
-
             testQuestionMapper.setParameters(ps, testQuestion);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -57,7 +56,6 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             log.log(Level.SEVERE, "Exception: ", e);
 
         }
-
         return new ArrayList<>(testQuestions.values());
 
     }
@@ -73,7 +71,6 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
                 testQuestion = testQuestionMapper.makeUnique(testQuestions, testQuestion);
                 testQuestions.put(testQuestion.getId(), testQuestion);
             }
-
             return new ArrayList<>(testQuestions.values());
         } catch (SQLException e) {
             log.log(Level.SEVERE, "Exception: ", e);

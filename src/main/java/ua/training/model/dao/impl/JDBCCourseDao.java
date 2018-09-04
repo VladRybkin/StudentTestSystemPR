@@ -86,7 +86,6 @@ public class JDBCCourseDao implements CourseDao {
     @Override
     public void update(Course course, int id) {
         try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
-
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
         } catch (SQLException e) {

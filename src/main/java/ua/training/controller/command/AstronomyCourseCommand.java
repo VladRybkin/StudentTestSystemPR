@@ -8,7 +8,6 @@ public class AstronomyCourseCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-
         return "/WEB-INF/pages/courses/astronomyCourse.jsp";
     }
 }

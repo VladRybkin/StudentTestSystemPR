@@ -9,12 +9,10 @@ import java.util.ResourceBundle;
 
 public class RegistrationCommand implements Command {
 
-    String REGEX_EMAIL = "^[[\\w]|[\\.]]+@[\\w]+[\\.][\\w]+$";
-
+    private final String REGEX_EMAIL = "^[[\\w]|[\\.]]+@[\\w]+[\\.][\\w]+$";
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
         UserService userService = new UserService();
         User user = new User();
         String login = request.getParameter("user_login");

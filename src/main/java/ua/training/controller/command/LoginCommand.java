@@ -9,19 +9,16 @@ import java.io.IOException;
 
 
 public class LoginCommand implements Command {
-
-
-
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        CommandUtility commandUtility=new CommandUtility();
+        CommandUtility commandUtility = new CommandUtility();
         LoginService loginService = new LoginService();
         User.Role role = User.Role.UNKNOWN;
-        User user=null;
+        User user = null;
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        if (login != null && password!=null) {
+        if (login != null && password != null) {
             user = loginService.getUserByLoginAndPass(login, password);
             role = user.getRole();
             request.getSession().setAttribute("userFromLogin", user);
@@ -30,7 +27,7 @@ public class LoginCommand implements Command {
         if (login == null || login.equals("") || password == null || password.equals("")) {
             return "/WEB-INF/pages/regAndLog/login.jsp";
         }
-        if(commandUtility.checkUserIsLogged(request, user.getLogin())){
+        if (commandUtility.checkUserIsLogged(request, user.getLogin())) {
             return "redirect:/api/error";
         }
 
@@ -45,8 +42,6 @@ public class LoginCommand implements Command {
             commandUtility.setUserRole(request, User.Role.UNKNOWN, login);
             return "redirect:/api/login";
         }
-
-
     }
 
 

@@ -15,15 +15,6 @@ public class StudentPageCommand implements Command {
         CourseService courseService = new CourseService();
         UserService userService = new UserService();
 
-//        User user = (User) request.getSession().getAttribute("userFromLogin");
-//        User user1 = userService.findCoursesByUserId(user.getId());
-//        if (user1.getCourses().size() == 0) {
-//            courseService.insertStudentCourses(user.getId(), 3);
-//            courseService.insertStudentCourses(user.getId(), 4);
-//        }
-
-
-
         return "/WEB-INF/pages/studentPages/student_page.jsp";
     }
 }

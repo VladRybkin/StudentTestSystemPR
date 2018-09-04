@@ -30,7 +30,6 @@ public class JDBCTestResultDao implements TestResultDao {
 
     @Override
     public void create(TestResult testResult) {
-
         try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
             testResultMapper.setParameters(ps, testResult);
             ps.executeUpdate();
@@ -48,9 +47,7 @@ public class JDBCTestResultDao implements TestResultDao {
     public List<TestResult> findAll() {
         Map<Integer, TestResult> testResults = new HashMap<>();
         Extract(testResults, findAllQuery);
-
         return new ArrayList<>(testResults.values());
-
     }
 
     @Override
@@ -58,15 +55,12 @@ public class JDBCTestResultDao implements TestResultDao {
         Map<Integer, TestResult> testResults = new HashMap<>();
         Extract(testResults, findAllByUserId + id);
         return new ArrayList<>(testResults.values());
-
     }
 
     private void Extract(Map<Integer, TestResult> testResults, String query) {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-
-
             while (resultSet.next()) {
                 TestResult testResult = testResultMapper.extractFromResultSet(resultSet);
                 testResult = testResultMapper.makeUnique(testResults, testResult);
@@ -74,14 +68,12 @@ public class JDBCTestResultDao implements TestResultDao {
             }
         } catch (SQLException e) {
             log.log(Level.SEVERE, "Exception: ", e);
-
         }
     }
 
-
     @Override
     public void update(TestResult testResult, int id) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery + id)) {
             testResultMapper.setParameters(ps, testResult);
             ps.executeUpdate();
         } catch (SQLException e) {
