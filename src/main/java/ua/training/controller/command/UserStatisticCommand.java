@@ -28,11 +28,11 @@ public class UserStatisticCommand implements Command {
 
         User user=(User) request.getSession().getAttribute("userFromLogin");
         List<TestResult>testResults=testResultService.findAllByUserId(user.getId());
-        List<UserAnswer>userAnswers=userAnswerService.findAllByUserId(user.getId());
+        List<UserAnswer>userAnswers=userAnswerService.findAllByUserId(user.getId(), 5, 10);
         Collections.sort(userAnswers, new UserAnswerComparator());
         Collections.sort(testResults, new TestResultComparator());
 
-        int noOfRecords=userAnswers.size();
+        int noOfRecords=100;
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
 

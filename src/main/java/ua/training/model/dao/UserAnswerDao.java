@@ -6,6 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserAnswerDao extends GenericDao<UserAnswer> {
-    public List<UserAnswer> findAllByUserId(int id);
-    public void insertUserAnswers(UserAnswer ... userAnswers) throws SQLException;
+     List<UserAnswer> findAllByUserId(int id, int currentPage, int recordsPerPage);
+     void insertUserAnswers(UserAnswer ... userAnswers) throws SQLException;
 }

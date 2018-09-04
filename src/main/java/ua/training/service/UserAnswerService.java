@@ -58,10 +58,10 @@ public class UserAnswerService {
         }
     }
 
-    public List<UserAnswer> findAllByUserId(int id) {
+    public List<UserAnswer> findAllByUserId(int id, int currentPage, int recordsPerPage) {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
             {
-                return dao.findAllByUserId(id);
+                return dao.findAllByUserId(id, currentPage, recordsPerPage);
             }
         }
     }

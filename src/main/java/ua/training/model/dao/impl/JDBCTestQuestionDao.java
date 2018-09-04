@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class JDBCTestQuestionDao implements TestQuestionDao {
     private Connection connection;
@@ -32,7 +31,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             testQuestionMapper.setParameters(ps, testQuestion);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -53,7 +52,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
                 testQuestions.put(testQuestion.getId(), testQuestion);
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
 
         }
         return new ArrayList<>(testQuestions.values());
@@ -73,7 +72,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             }
             return new ArrayList<>(testQuestions.values());
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
             return null;
         }
     }
@@ -85,7 +84,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             testQuestionMapper.setParameters(ps, testQuestion);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -95,7 +94,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -104,7 +103,7 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 }

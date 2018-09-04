@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 public class JDBCUserAnswerDao implements UserAnswerDao {
     private Connection connection;
@@ -33,7 +33,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
             userAnswerMapper.setParameters(ps, userAnswer);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -70,9 +70,9 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     }
 
     @Override
-    public List<UserAnswer> findAllByUserId(int id) {
+    public List<UserAnswer> findAllByUserId(int id, int currentPage, int recordsPerPage) {
         Map<Integer, UserAnswer> userAnswers = new HashMap<>();
-        Extract(userAnswers, findAllByUserIdQuery + id);
+        Extract(userAnswers, findAllByUserIdQuery + id+" limit "+ currentPage+", "+recordsPerPage);
 
         return new ArrayList<>(userAnswers.values());
 
@@ -90,18 +90,18 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
 
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
 
         }
     }
 
     @Override
     public void update(UserAnswer statistic, int id) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery + id)) {
             userAnswerMapper.setParameters(ps, statistic);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 

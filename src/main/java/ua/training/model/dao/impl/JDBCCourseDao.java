@@ -1,5 +1,6 @@
 package ua.training.model.dao.impl;
 
+import org.apache.log4j.Priority;
 import ua.training.model.dao.CourseDao;
 import ua.training.model.dao.mapper.CourseMapper;
 import ua.training.model.dao.mapper.UserMapper;
@@ -11,8 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 public class JDBCCourseDao implements CourseDao {
     private Connection connection;
@@ -32,11 +33,10 @@ public class JDBCCourseDao implements CourseDao {
     public void create(Course course) {
 
         try (PreparedStatement ps = connection.prepareStatement(createQuery)) {
-
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception:", e);
+            log.log(org.apache.log4j.Level.INFO, e);
 
         }
     }
@@ -52,7 +52,7 @@ public class JDBCCourseDao implements CourseDao {
                 course = courseMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
         return course;
 
@@ -75,8 +75,8 @@ public class JDBCCourseDao implements CourseDao {
                 courses.put(course.getId(), course);
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
-            ;
+            log.log(org.apache.log4j.Level.INFO, e);
+
         }
 
         return new ArrayList<>(courses.values());
@@ -85,11 +85,11 @@ public class JDBCCourseDao implements CourseDao {
 
     @Override
     public void update(Course course, int id) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery + id)) {
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -100,7 +100,7 @@ public class JDBCCourseDao implements CourseDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -109,7 +109,7 @@ public class JDBCCourseDao implements CourseDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception:", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -119,7 +119,8 @@ public class JDBCCourseDao implements CourseDao {
         try (PreparedStatement ps = connection.prepareStatement(insertStudentCourses)) {
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
+
         }
     }
 }

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 public class JDBCUserDao implements UserDao {
     private Connection connection;
@@ -42,7 +42,7 @@ public class JDBCUserDao implements UserDao {
 
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -56,7 +56,7 @@ public class JDBCUserDao implements UserDao {
                 user = userMapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
         return user;
 
@@ -96,7 +96,7 @@ public class JDBCUserDao implements UserDao {
                 return user;
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
         return null;
     }
@@ -134,7 +134,7 @@ public class JDBCUserDao implements UserDao {
                 users.put(user.getId(), user);
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
         return new ArrayList<>(users.values());
     }
@@ -142,11 +142,11 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void update(User user, int id) {
-        try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY+id)) {
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY + id)) {
             userMapper.setParameters(ps, user);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -157,7 +157,7 @@ public class JDBCUserDao implements UserDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -173,7 +173,7 @@ public class JDBCUserDao implements UserDao {
             resultSet.next();
             user = userMapper.extractFromResultSet(resultSet);
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
 
         return user;
@@ -185,7 +185,7 @@ public class JDBCUserDao implements UserDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 

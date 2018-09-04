@@ -38,6 +38,6 @@ public class UserAnswerServiceTest {
 
     @Test
     public void findAllByUserId() {
-        assertTrue(userAnswerService.findAllByUserId(2).size()>0);
+        assertTrue(userAnswerService.findAllByUserId(2, 1, 10).size()>0);
     }
 }

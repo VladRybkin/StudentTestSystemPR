@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class JDBCTestResultDao implements TestResultDao {
     private Connection connection;
@@ -34,7 +33,7 @@ public class JDBCTestResultDao implements TestResultDao {
             testResultMapper.setParameters(ps, testResult);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -67,7 +66,7 @@ public class JDBCTestResultDao implements TestResultDao {
                 testResults.put(testResult.getId(), testResult);
             }
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -77,7 +76,7 @@ public class JDBCTestResultDao implements TestResultDao {
             testResultMapper.setParameters(ps, testResult);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -87,7 +86,7 @@ public class JDBCTestResultDao implements TestResultDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -96,7 +95,7 @@ public class JDBCTestResultDao implements TestResultDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            log.log(Level.SEVERE, "Exception: ", e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
