@@ -19,7 +19,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     private final String createQuery = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" + "VALUES\n" + "(?, ?, ?, ?);";
     private final String findAllByUserIdQuery = "SELECT * FROM user_answers right join users using(user_id) WHERE user_id=";
     private final String findAllQuery = "SELECT * FROM user_answers RIGHT JOIN users USING(user_id);";
-    private final String updateQuery = "UPDATE statistic SET user_id = ? , test_result_id= ? WHERE user_id = ?";
+    private final String updateQuery = "UPDATE statistic SET user_id = ? , test_result_id= ? WHERE user_id =";
     private final String deleteQuery = "DELETE FROM stastistic  WHERE user_id = ?";
 
 
@@ -96,9 +96,8 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     }
 
     @Override
-    public void update(UserAnswer statistic) {
-
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
+    public void update(UserAnswer statistic, int id) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
             userAnswerMapper.setParameters(ps, statistic);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -108,7 +107,6 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
 
     @Override
     public void delete(int id) {
-
         try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
             ps.setInt(1, id);
             ps.executeUpdate();

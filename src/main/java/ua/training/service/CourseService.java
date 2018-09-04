@@ -39,9 +39,9 @@ public class CourseService {
 
 
 
-    public void update(Course course) {
+    public void update(Course course, int id) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
-            dao.update(course);
+            dao.update(course, id);
         }
     }
 

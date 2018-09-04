@@ -30,9 +30,9 @@ public class UserAnswerService {
     }
 
 
-    public void update(UserAnswer statistic) {
+    public void update(UserAnswer statistic, int id) {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {
-            dao.update(statistic);
+            dao.update(statistic, id);
         }
     }
 

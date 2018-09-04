@@ -21,7 +21,7 @@ public class JDBCCourseDao implements CourseDao {
     private final String createQuery = "INSERT INTO courses(`course_status`,`course_category`)VALUES(?, ?)";
     private final String findByIdQuery = "SELECT * FROM courses WHERE course_id = ?";
     private final String findAllQuery = "SELECT * FROM courses";
-    private final String updateQuery = "UPDATE courses SET course_id = ?, course_status =?, course_category=? WHERE course_id = ?";
+    private final String updateQuery = "UPDATE courses SET course_id = ?, course_status =?, course_category=? WHERE course_id =";
     private final String deleteQuery = "DELETE FROM courses WHERE course_id = ?";
 
     JDBCCourseDao(Connection connection) {
@@ -46,7 +46,6 @@ public class JDBCCourseDao implements CourseDao {
         Course course = null;
         try (PreparedStatement ps = connection.prepareStatement
                 (findByIdQuery)) {
-
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -85,8 +84,9 @@ public class JDBCCourseDao implements CourseDao {
     }
 
     @Override
-    public void update(Course course) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
+    public void update(Course course, int id) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
+
             courseMapper.setParameters(ps, course);
             ps.executeUpdate();
         } catch (SQLException e) {

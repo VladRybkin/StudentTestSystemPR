@@ -31,10 +31,10 @@ public class UserService  {
     }
 
 
-    public void update(User user) {
+    public void update(User user, int id) {
 
         try (UserDao dao = daoFactory.createUserDao()) {
-            dao.update(user);
+            dao.update(user, id);
         }
     }
 

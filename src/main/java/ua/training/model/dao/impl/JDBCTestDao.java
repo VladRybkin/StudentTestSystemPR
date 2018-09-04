@@ -17,7 +17,7 @@ public class JDBCTestDao implements TestDao {
     private TestMapper testMapper = new TestMapper();
     private final String createQuery = "INSERT INTO tests(`test_category`)VALUES(?)";
     private final String findAllQuery = "SELECT * FROM tests LEFT JOIN test_questions USING(test_id)";
-    private final String updateQuery = "UPDATE tests SET test_category = ? WHERE test_id = ?";
+    private final String updateQuery = "UPDATE tests SET test_category = ? WHERE test_id = ";
     private final String deleteQuery = "DELETE FROM tests WHERE test_id = ?";
 
     JDBCTestDao(Connection connection) {
@@ -73,8 +73,8 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public void update(Test test) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
+    public void update(Test test, int id) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
             testMapper.setParameters(ps, test);
             ps.executeUpdate();
         } catch (SQLException e) {

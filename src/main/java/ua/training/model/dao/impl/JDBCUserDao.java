@@ -27,7 +27,7 @@ public class JDBCUserDao implements UserDao {
     private final String FIND_COURSES_BY_USER_ID_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) WHERE user_id=";
     private final String FIND_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ?";
     private final String FIND_ALL_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) " + "LEFT JOIN user_answers USING(user_id) LEFT JOIN test_results USING(user_id)";
-    private final String UPDATE_QUERY = "UPDATE users SET user_login = ? , user_password = ?, user_role=?, user_mail=? WHERE user_id = ?";
+    private final String UPDATE_QUERY = "UPDATE users SET user_login = ? , user_password = ?, user_role=?, user_mail=? WHERE user_id = ";
     private final String DELETE_QUERY = "DELETE FROM users  WHERE user_id = ?";
     private final String GET_USER_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
 
@@ -141,8 +141,8 @@ public class JDBCUserDao implements UserDao {
 
 
     @Override
-    public void update(User user) {
-        try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY)) {
+    public void update(User user, int id) {
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY+id)) {
             userMapper.setParameters(ps, user);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -164,9 +164,7 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public User getUserByLoginAndPassword(String userLogin, String userPassword) {
-
         User user = new User();
-
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN_QUERY);
             preparedStatement.setString(1, userLogin);

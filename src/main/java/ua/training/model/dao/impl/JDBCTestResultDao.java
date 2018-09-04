@@ -19,7 +19,7 @@ public class JDBCTestResultDao implements TestResultDao {
     private final String createQuery = "INSERT INTO test_results(test_result_category,test_result, user_id)VALUES(?, ?, ?)";
     private final String findAllQuery = "SELECT * FROM test_results RIGHT JOIN users USING (user_id)";
     private final String findAllByUserId = "SELECT * FROM test_results RIGHT JOIN users USING (user_id) WHERE user_id=";
-    private final String updateQuery = "UPDATE test_results SET test_result_category = ? , test_result = ? WHERE test_result_id = ?";
+    private final String updateQuery = "UPDATE test_results SET test_result_category = ? , test_result = ? WHERE test_result_id =";
     private final String deleteQuery = "DELETE FROM test_results  WHERE test_result_id = ?";
 
 
@@ -80,8 +80,8 @@ public class JDBCTestResultDao implements TestResultDao {
 
 
     @Override
-    public void update(TestResult testResult) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
+    public void update(TestResult testResult, int id) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
             testResultMapper.setParameters(ps, testResult);
             ps.executeUpdate();
         } catch (SQLException e) {

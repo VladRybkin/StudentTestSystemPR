@@ -38,9 +38,9 @@ public class TestQuestionService{
     }
 
 
-    public void update(TestQuestion testQuestion) {
+    public void update(TestQuestion testQuestion, int id) {
         try (TestQuestionDao dao = daoFactory.createTestQuestionDao()) {
-            dao.update(testQuestion);
+            dao.update(testQuestion, id);
         }
     }
 
