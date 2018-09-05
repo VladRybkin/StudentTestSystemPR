@@ -12,6 +12,7 @@ import java.util.List;
 
 public class AccessFilter implements Filter {
     private List<String> studentPages = new ArrayList<>();
+    private List<String>adminPages=new ArrayList<>();
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         studentPages.add("/api/astronomyCourse");
@@ -22,6 +23,8 @@ public class AccessFilter implements Filter {
         studentPages.add("/api/geographyTest");
         studentPages.add("/api/astronomyTest");
         studentPages.add("/api/user_statistic");
+        adminPages.add("/api/admin_page");
+        adminPages.add("/api/testResultsStatistic");
 
     }
 
@@ -36,7 +39,7 @@ public class AccessFilter implements Filter {
             response.sendRedirect("/api/error");
         }
 
-        if (path.contains("/api/admin_page") && (role == null || !role.equals(User.Role.ADMIN))) {
+        if (adminPages.contains(path) && (role == null || (!role.equals(User.Role.ADMIN)))) {
             response.sendRedirect("/api/error");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
