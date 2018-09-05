@@ -12,13 +12,7 @@
     <title>Error</title>
 </head>
     <body>
-        <h2>
-          Error<br/>
-            <i>Error <%= exception %></i>
-        </h2>
-
-
-       <br>
+       <h1>Error is occurred</h1>
 
     </body>
 </html>
