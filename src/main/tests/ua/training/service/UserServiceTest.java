@@ -19,7 +19,7 @@ public class UserServiceTest {
 
     @Test
     public void findAll() {
-        assertTrue(userService.findAll().size() > 0);
+        assertTrue(userService.findAll().size() >0);
     }
 
 

@@ -14,7 +14,7 @@ public class UserAnswerStatistic implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserAnswerService userAnswerService = new UserAnswerService();
         int page = 1;
-        int recordsPerPage = 10;
+        int recordsPerPage = 5;
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }

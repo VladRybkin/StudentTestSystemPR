@@ -8,7 +8,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>admin page</title>
+    <title>admin test results page</title>
 </head>
 <body>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language: pageContext.request.locale}" scope="session"/>
@@ -63,7 +63,7 @@
 
 
     <c:if test="${currentPage != 1}">
-        <td><a href="/api/testResultsStatistic?page=${currentPage - 1}">Previous</a></td>
+        <td><a href="/api/testResultsStatistic?page=${currentPage - 1}"><fmt:message key="previous.page" bundle="${rb}" /></a></td>
     </c:if>
 
     <%--For displaying Page numbers.
@@ -85,7 +85,7 @@
 
     <%--For displaying Next link --%>
     <c:if test="${currentPage lt noOfPages}">
-        <td><a href="/api/testResultsStatistic?page=${currentPage + 1}">Next</a></td>
+        <td><a href="/api/testResultsStatistic?page=${currentPage + 1}"><fmt:message key="next.page" bundle="${rb}" /></a></td>
     </c:if>
 
 

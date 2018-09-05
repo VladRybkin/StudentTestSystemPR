@@ -21,6 +21,7 @@ public class AccessFilter implements Filter {
         studentPages.add("/api/astronomyCourse");
         studentPages.add("/api/geographyTest");
         studentPages.add("/api/astronomyTest");
+        studentPages.add("/api/user_statistic");
 
     }
 

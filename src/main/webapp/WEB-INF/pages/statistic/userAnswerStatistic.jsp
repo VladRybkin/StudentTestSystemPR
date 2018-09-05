@@ -26,7 +26,7 @@
 <fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.role}"/><br/>
 <label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
 <br><br>
-
+<h2><fmt:message key="previous.page" bundle="${rb}" /></h2><br>
 <form method="get">
 
 
