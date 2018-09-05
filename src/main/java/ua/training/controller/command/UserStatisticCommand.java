@@ -24,9 +24,9 @@ public class UserStatisticCommand implements Command {
         }
         User user = (User) request.getSession().getAttribute("userFromLogin");
         List<TestResult> testResults = testResultService.findAllByUserId(user.getId(), (page - 1) * recordsPerPage, recordsPerPage);
-        Collections.sort(testResults, new TestResultComparator());
+        testResults.sort(new TestResultComparator());
 
-        int noOfRecords = testResultService.findAllByUserId(user.getId(), 1, 10000).size();
+        int noOfRecords = testResultService.findAllByUserId(user.getId(), 1, Integer.MAX_VALUE).size();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
         request.setAttribute("noOfPages", noOfPages);

@@ -17,7 +17,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     private UserAnswerMapper userAnswerMapper = new UserAnswerMapper();
     private static Logger log = Logger.getLogger(JDBCUserAnswerDao.class.getName());
     private final String createQuery = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" + "VALUES\n" + "(?, ?, ?, ?);";
-    private final String findAllByUserIdQuery = "SELECT * FROM user_answers right join users using(user_id) WHERE user_id=";
+    private final String findAllByUserIdQuery = "SELECT * FROM user_answers RIGHT join users using(user_id) WHERE user_id=";
     private final String findAllQuery = "SELECT * FROM user_answers RIGHT JOIN users USING(user_id);";
     private final String updateQuery = "UPDATE statistic SET user_id = ? , test_result_id= ? WHERE user_id =";
     private final String deleteQuery = "DELETE FROM stastistic  WHERE user_id = ?";

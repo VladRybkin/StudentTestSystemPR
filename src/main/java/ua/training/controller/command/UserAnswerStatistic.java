@@ -22,9 +22,9 @@ public class UserAnswerStatistic implements Command {
         }
         User user = (User) request.getSession().getAttribute("userFromLogin");
         List<UserAnswer> userAnswers = userAnswerService.findAllByUserId(user.getId(), (page - 1) * recordsPerPage, recordsPerPage);
-        Collections.sort(userAnswers, new UserAnswerComparator());
+        userAnswers.sort(new UserAnswerComparator());
 
-        int noOfRecords = userAnswerService.findAllByUserId(user.getId(), 1, 10000).size();
+        int noOfRecords = userAnswerService.findAllByUserId(user.getId(), 1, Integer.MAX_VALUE).size();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
         request.setAttribute("noOfPages", noOfPages);

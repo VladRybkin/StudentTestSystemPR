@@ -20,7 +20,7 @@ public class AllTestResultsCommand implements Command {
             page = Integer.parseInt(request.getParameter("page"));
         }
         List<TestResult> testResults = testResultService.findAllWithLimit((page - 1) * recordsPerPage, recordsPerPage);
-        Collections.sort(testResults, new TestResultComparator());
+        testResults.sort(new TestResultComparator());
 
         int noOfRecords = testResultService.findAll().size();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
