@@ -91,9 +91,8 @@
 
 </form>
 <br><br>
-
-<label><a href="${pageContext.request.contextPath}/index.jsp">
-    <button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button>
+<label><a href="${pageContext.request.contextPath}/api/admin_page"><button onclick=""><fmt:message key="back.to.the.admin.page" bundle="${rb}" /></button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button>
 </a></label><br>
 
 

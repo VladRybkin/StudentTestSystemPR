@@ -68,7 +68,7 @@
 
     <%--For displaying Previous link except for the 1st page --%>
     <c:if test="${currentPage != 1}">
-        <td><a href="/api/userAnswerStatistic?page=${currentPage - 1}">Previous</a></td>
+        <td><a href="/api/userAnswerStatistic?page=${currentPage - 1}"><fmt:message key="previous.page" bundle="${rb}" /></a></td>
     </c:if>
 
     <%--For displaying Page numbers.
@@ -90,7 +90,7 @@
 
     <%--For displaying Next link --%>
     <c:if test="${currentPage lt noOfPages}">
-        <td><a href="/api/userAnswerStatistic?page=${currentPage + 1}">Next</a></td>
+        <td><a href="/api/userAnswerStatistic?page=${currentPage + 1}"><fmt:message key="next.page" bundle="${rb}" /></a></td>
     </c:if>
 
 
@@ -103,7 +103,7 @@
 
 
 
-<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick="">userAnswerStats</button></a></label><br>
+<label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="back.to.the.test.results" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button></a></label><br>
 
