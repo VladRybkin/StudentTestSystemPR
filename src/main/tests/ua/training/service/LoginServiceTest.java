@@ -8,6 +8,6 @@ public class LoginServiceTest {
     private LoginService loginService=new LoginService();
     @Test
     public void getUserByLoginAndPass() {
-        assertEquals(loginService.getUserByLoginAndPass("Vlad", "admin").getId(), 1);
+        assertEquals(loginService.getUserByLoginAndPass("Vlad", "adminf").getId(), 1);
     }
 }
