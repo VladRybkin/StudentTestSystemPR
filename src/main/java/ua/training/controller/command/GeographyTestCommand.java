@@ -84,8 +84,6 @@ public class GeographyTestCommand implements Command {
         }
 
 
-
-
         if (result.getCategory()!=null){
             session.setAttribute("result", result.getResult());
         }

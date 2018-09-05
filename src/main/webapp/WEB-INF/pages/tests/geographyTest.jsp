@@ -40,9 +40,6 @@
     <label>${requestScope.Gfourth}<br><input type="text" name="userAnswer4"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
     <label>${requestScope.Gfifth}<br><input type="text" name="userAnswer5"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
     <input type="submit" value="ok"><br>
-    <label><fmt:message key="correct.answers" bundle="${rb}" />: </label><c:out value="${requestScope.count}"/><br/>
-
-
 
 </form>
 
