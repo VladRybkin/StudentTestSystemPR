@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Vlad
-  Date: 29.08.2018
-  Time: 5:13
-  To change this template use File | Settings | File Templates.
---%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -27,26 +20,44 @@
     <input name="language" type="image" value="uk_UA"
     ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
 </form>
-<h2><fmt:message key="astronomy.test" bundle="${rb}" /></h2><br/>
 <br>
-
 <fmt:message key="login" bundle="${rb}" />: <c:out value="${sessionScope.userLogin}"/><br/>
 <fmt:message key="role" bundle="${rb}" />: <c:out value="${sessionScope.role}"/><br/>
 <label><a href="${pageContext.request.contextPath}/api/logout"><button onclick=""><fmt:message key="logout" bundle="${rb}" /></button></a></label>
-<br><br>
-
-
+<h2><fmt:message key="result" bundle="${rb}" /></h2><br/>
 <br>
+<form method="get">
 
 
-<form method="post">
-    <label>${requestScope.Gfirst}<br><input type="text" name="userAnswer1"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
-    <label>${requestScope.Gsecond}<br><input type="text" name="userAnswer2"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
-    <label>${requestScope.Gthird}<br><input type="text" name="userAnswer3"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
-    <label>${requestScope.Gfourth}<br><input type="text" name="userAnswer4"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
-    <label>${requestScope.Gfifth}<br><input type="text" name="userAnswer5"></label><fmt:message key="input.answer" bundle="${rb}" /><br>
-    <input type="submit" value="ok"><br>
-    <%--<label><fmt:message key="correct.answers" bundle="${rb}" />: </label><c:out value="${requestScope.count}"/><br/>--%>
+
+    <div class="content-box-large">
+        <div class="panel-heading">
+            <div class="panel-title"><fmt:message key="user.statistic" bundle="${rb}" /></div>
+        </div>
+        <div class="panel-body">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" >
+                <thead>
+                <tr class="mySuprerClass">
+                    <th><fmt:message key="test.question" bundle="${rb}" /></th>
+                    <th><fmt:message key="user.answer" bundle="${rb}" /></th>
+                    <th><fmt:message key="correct.answer" bundle="${rb}" /></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <c:forEach var="i" items="${sessionScope.statistic}">
+                    <tr >
+                        <td class="center"><c:out value="${i.testQuestion}"/></td>
+                        <td class="center"><c:out value="${i.userAnswer}"/></td>
+                        <td class="center"><c:out value="${i.correctAnswer}"/></td>
+                    </tr>
+                </c:forEach>
+
+                </tbody>
+            </table>
+        </div>
+    </div><br>
+    <label><fmt:message key="result" bundle="${rb}" />%= </label><c:out value="${sessionScope.result}"/><br/>
 
 </form>
 
@@ -54,16 +65,22 @@
 
 
 
-<br>
-<label><a href="${pageContext.request.contextPath}/api/testResult"><button onclick=""><fmt:message key="result" bundle="${rb}" /></button></a></label><br>
+
+
+
+
+
+
+
+
+
+
+
 <label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
-<label><a href="${pageContext.request.contextPath}/api/astronomyCourse.jsp"><button onclick=""><fmt:message key="back.to.the.astronomy.course" bundle="${rb}" /></button><br>
+<label><a href="${pageContext.request.contextPath}/api/student_page"><button onclick=""><fmt:message key="back.to.the.student.page" bundle="${rb}" /></button><br>
 </a></label>
 
 <label><a href="${pageContext.request.contextPath}/index.jsp"><button onclick=""><fmt:message key="back.to.the.main" bundle="${rb}" /></button><br>
 </a></label>
-
-
-<hr/>
 </body>
 </html>

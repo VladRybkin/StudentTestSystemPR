@@ -43,28 +43,6 @@
     <label><fmt:message key="correct.answers" bundle="${rb}" />: </label><c:out value="${requestScope.count}"/><br/>
 
 
-    <table>
-        <tr>
-            <th><fmt:message key="statistic" bundle="${rb}" /></th>
-        </tr>
-        <c:forEach var="i" items="${sessionScope.statistic}">
-            <tr>
-                <th>
-                    question: <c:out value="${i.testQuestion}"/>
-                </th>
-                <th>
-                    user answer: <c:out value="${i.userAnswer}"/>
-                </th>
-                <th>
-                    correct Answer: <c:out value="${i.correctAnswer}"/>
-                </th>
-            </tr>
-
-        </c:forEach>
-    </table>
-
-
-
 
 </form>
 
@@ -73,7 +51,7 @@
 
 
 <br>
-
+<label><a href="${pageContext.request.contextPath}/api/testResult"><button onclick=""><fmt:message key="result" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/geographyCourse"><button onclick=""><fmt:message key="back.to.the.geography.course" bundle="${rb}" /></button><br>
 </a></label>

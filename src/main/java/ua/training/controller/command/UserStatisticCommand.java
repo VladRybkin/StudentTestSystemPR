@@ -13,10 +13,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserStatisticCommand implements Command {
-    private TestResultService testResultService = new TestResultService();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        TestResultService testResultService = new TestResultService();
         int page = 1;
         int recordsPerPage = 10;
         if (request.getParameter("page") != null) {

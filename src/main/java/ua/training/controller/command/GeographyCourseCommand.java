@@ -7,8 +7,6 @@ import java.io.IOException;
 public class GeographyCourseCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         return "/WEB-INF/pages/courses/geographyCourse.jsp";
-
     }
 }

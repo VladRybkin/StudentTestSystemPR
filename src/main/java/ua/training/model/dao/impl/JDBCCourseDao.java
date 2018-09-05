@@ -67,8 +67,6 @@ public class JDBCCourseDao implements CourseDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
 
-            UserMapper userMapper = new UserMapper();
-
             while (resultSet.next()) {
                 Course course = courseMapper.extractFromResultSet(resultSet);
                 course = courseMapper.makeUnique(courses, course);
@@ -78,7 +76,6 @@ public class JDBCCourseDao implements CourseDao {
             log.log(org.apache.log4j.Level.INFO, e);
 
         }
-
         return new ArrayList<>(courses.values());
 
     }

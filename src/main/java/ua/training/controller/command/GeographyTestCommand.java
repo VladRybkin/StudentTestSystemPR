@@ -6,19 +6,19 @@ import ua.training.service.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GeographyTestCommand implements Command {
-    private TestQuestionService testQuestionService = new TestQuestionService();
+
     private UserAnswerService userAnswerService = new UserAnswerService();
     private TestResultService testResultService = new TestResultService();
 
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        TestQuestionService testQuestionService = new TestQuestionService();
         User user = (User) request.getSession().getAttribute("userFromLogin");
         Test geographyTest = new Test("GEOGRAPHY");
         TestResult result = new TestResult();
@@ -85,7 +85,10 @@ public class GeographyTestCommand implements Command {
 
 
 
-        request.setAttribute("count", count);
+
+        if (result.getCategory()!=null){
+            session.setAttribute("result", result.getResult());
+        }
         request.setAttribute("geographytest", questions);
         session.setAttribute("statistic", statistic);
         request.setAttribute("Gfirst", questions.get(0).getQuestion());
@@ -94,6 +97,9 @@ public class GeographyTestCommand implements Command {
         request.setAttribute("Gfourth", questions.get(3).getQuestion());
         request.setAttribute("Gfifth", questions.get(4).getQuestion());
 
+        if (userAnswer1 != null && userAnswer2 != null && userAnswer3 != null && userAnswer4 != null && userAnswer5 != null) {
+            return "redirect:/api/testResult";
+        }
 
         return "/WEB-INF/pages/tests/geographyTest.jsp";
     }

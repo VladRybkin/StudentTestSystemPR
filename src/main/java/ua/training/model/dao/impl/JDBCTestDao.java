@@ -8,6 +8,7 @@ import ua.training.model.entity.TestQuestion;
 
 import java.sql.*;
 import java.util.*;
+
 import org.apache.log4j.Logger;
 
 public class JDBCTestDao implements TestDao {
@@ -32,7 +33,6 @@ public class JDBCTestDao implements TestDao {
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
         }
-
     }
 
     @Override
@@ -47,7 +47,6 @@ public class JDBCTestDao implements TestDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(findAllQuery);
-
             TestQuestionMapper testQuestionMapper = new TestQuestionMapper();
             while (resultSet.next()) {
                 Test test = testMapper.extractFromResultSet(resultSet);
@@ -60,7 +59,6 @@ public class JDBCTestDao implements TestDao {
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
         }
-
         return new ArrayList<>(tests.values());
 
     }

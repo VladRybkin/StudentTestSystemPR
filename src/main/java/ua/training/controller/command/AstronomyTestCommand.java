@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AstronomyTestCommand implements Command {
-    private TestQuestionService testQuestionService = new TestQuestionService();
+
     private UserAnswerService userAnswerService = new UserAnswerService();
     private TestResultService testResultService = new TestResultService();
 
-
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        TestQuestionService testQuestionService = new TestQuestionService();
         User user = (User) request.getSession().getAttribute("userFromLogin");
         Test astronomyTest = new Test("ASTRONOMY");
         TestResult result = new TestResult();
@@ -83,9 +83,9 @@ public class AstronomyTestCommand implements Command {
             addTestResultToDatabase(result);
         }
 
-
-        request.setAttribute("testt", "testt");
-        request.setAttribute("count", count);
+        if (result.getCategory()!=null){
+            session.setAttribute("result", result.getResult());
+        }
         request.setAttribute("astronomyTest", questions);
         session.setAttribute("statistic", statistic);
         request.setAttribute("Gfirst", questions.get(0).getQuestion());
@@ -93,6 +93,10 @@ public class AstronomyTestCommand implements Command {
         request.setAttribute("Gthird", questions.get(2).getQuestion());
         request.setAttribute("Gfourth", questions.get(3).getQuestion());
         request.setAttribute("Gfifth", questions.get(4).getQuestion());
+
+        if (userAnswer1 != null && userAnswer2 != null && userAnswer3 != null && userAnswer4 != null && userAnswer5 != null) {
+            return "redirect:/api/testResult";
+        }
 
         return "/WEB-INF/pages/tests/astronomyTest.jsp";
     }

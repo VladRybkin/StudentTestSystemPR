@@ -70,11 +70,10 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
                 testQuestion = testQuestionMapper.makeUnique(testQuestions, testQuestion);
                 testQuestions.put(testQuestion.getId(), testQuestion);
             }
-            return new ArrayList<>(testQuestions.values());
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
-            return null;
-        }
+            }
+            return new ArrayList<>(testQuestions.values());
     }
 
 

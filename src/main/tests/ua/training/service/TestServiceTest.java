@@ -6,9 +6,6 @@ import static org.junit.Assert.*;
 
 public class TestServiceTest {
     private TestService testService=new TestService();
-    @Test
-    public void create() {
-    }
 
     @Test
     public void findById() {
@@ -20,15 +17,5 @@ public class TestServiceTest {
     {assertTrue(testService.findAll().size()>0);
     }
 
-    @Test
-    public void update() {
-    }
 
-    @Test
-    public void delete() {
-    }
-
-    @Test
-    public void close() {
-    }
 }

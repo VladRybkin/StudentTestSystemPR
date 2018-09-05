@@ -4,11 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-public class AstronomyMaterialCommand implements Command {
+public class TestResultCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        return "/WEB-INF/pages/materials/astronomyMaterial.jsp";
+        return "/WEB-INF/pages/tests/testResult.jsp";
     }
 }

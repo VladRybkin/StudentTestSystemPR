@@ -5,39 +5,20 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UserAnswerServiceTest {
-    private UserAnswerService userAnswerService=new UserAnswerService();
-    @Test
-    public void create() {
-    }
-
-    @Test
-    public void insertUserAnswers() {
-    }
+    private UserAnswerService userAnswerService = new UserAnswerService();
 
     @Test
     public void findById() {
-       assertEquals(userAnswerService.findById(8).getId(), 8);
-    }
-
-    @Test
-    public void update() {
-    }
-
-    @Test
-    public void delete() {
-    }
-
-    @Test
-    public void close() {
+        assertEquals(userAnswerService.findById(8).getId(), 8);
     }
 
     @Test
     public void findAll() {
-        assertTrue(userAnswerService.findAll().size()>0);
+        assertTrue(userAnswerService.findAll().size() > 0);
     }
 
     @Test
     public void findAllByUserId() {
-        assertTrue(userAnswerService.findAllByUserId(2, 1, 10).size()>0);
+        assertTrue(userAnswerService.findAllByUserId(2, 1, Integer.MAX_VALUE).size() > 0);
     }
 }

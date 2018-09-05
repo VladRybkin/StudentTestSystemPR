@@ -37,6 +37,7 @@ public class Servlet extends HttpServlet {
         commands.put("astronomyMaterial", new AstronomyMaterialCommand());
         commands.put("userAnswerStatistic", new UserAnswerStatistic());
         commands.put("testResultsStatistic", new AllTestResultsCommand());
+        commands.put("testResult", new TestResultCommand());
     }
 
 

@@ -88,18 +88,19 @@ public class JDBCUserDao implements UserDao {
 
 
     public User findByLogin(String login) {
+        User user=null;
         try (PreparedStatement ps = connection.prepareStatement
                 (FIND_BY_LOGIN_QUERY)) {
             ps.setString(1, login);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                User user = userMapper.extractFromResultSet(rs);
-                return user;
+                 user = userMapper.extractFromResultSet(rs);
+
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
         }
-        return null;
+        return user;
     }
 
 
@@ -191,7 +192,6 @@ public class JDBCUserDao implements UserDao {
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
         }
-
         return user;
     }
 

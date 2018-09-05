@@ -4,11 +4,9 @@ import ua.training.model.entity.User;
 import ua.training.model.entity.UserAnswer;
 import ua.training.service.UserAnswerService;
 import ua.training.service.comparators.UserAnswerComparator;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 public class UserAnswerStatistic implements Command {

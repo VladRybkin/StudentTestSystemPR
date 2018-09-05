@@ -6,13 +6,6 @@ import static org.junit.Assert.*;
 
 public class CourseServiceTest {
     private CourseService courseService=new CourseService();
-    @Test
-    public void create() {
-    }
-
-    @Test
-    public void insertStudentCourses() {
-    }
 
     @Test
     public void findById() {
@@ -24,16 +17,7 @@ public class CourseServiceTest {
         assertTrue(courseService.findAll().size()>0);
     }
 
-    @Test
-    public void update() {
-    }
 
-    @Test
-    public void delete() {
-    }
 
-    @Test
-    public void close() {
 
-    }
 }

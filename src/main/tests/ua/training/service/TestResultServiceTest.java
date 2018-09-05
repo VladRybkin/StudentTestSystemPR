@@ -2,13 +2,12 @@ package ua.training.service;
 
 import org.junit.Test;
 
+import java.sql.Connection;
+
 import static org.junit.Assert.*;
 
 public class TestResultServiceTest {
     private TestResultService testResultService=new TestResultService();
-    @Test
-    public void create() {
-    }
 
     @Test
     public void findById() {
@@ -21,19 +20,7 @@ public class TestResultServiceTest {
 
     @Test
     public void findAllByUserId() {
-        assertTrue(testResultService.findAllByUserId(2, 1, 10000).size()>0);
+        assertTrue(testResultService.findAllByUserId(2, 1, Integer.MAX_VALUE).size()>0);
     }
 
-    @Test
-    public void update() {
-    }
-
-    @Test
-    public void delete() {
-
-    }
-
-    @Test
-    public void close() {
-    }
 }
