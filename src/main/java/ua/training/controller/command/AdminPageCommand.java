@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AdminPageCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(HttpServletRequest request) throws IOException {
         UserService userService = new UserService();
         int page = 1;
         int recordsPerPage = 5;

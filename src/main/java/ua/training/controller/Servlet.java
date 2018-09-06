@@ -35,7 +35,7 @@ public class Servlet extends HttpServlet {
         commands.put("geographyCourse", new GeographyCourseCommand());
         commands.put("geographyMaterial", new GeographyMaterialCommand());
         commands.put("astronomyMaterial", new AstronomyMaterialCommand());
-        commands.put("userAnswerStatistic", new UserAnswerStatistic());
+        commands.put("userAnswerStatistic", new UserAnswerStatisticCommand());
         commands.put("testResultsStatistic", new AllTestResultsCommand());
         commands.put("testResult", new TestResultCommand());
     }
@@ -58,8 +58,8 @@ public class Servlet extends HttpServlet {
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getRequestURI();
         path = path.replaceAll(".*/api/" , "");
-        Command command = commands.getOrDefault(path, (r, p)->"/index.jsp)");
-        String page = command.execute(request, response);
+        Command command = commands.getOrDefault(path, (r)->"/index.jsp)");
+        String page = command.execute(request);
         if (page.contains("redirect")){
             response.sendRedirect(request.getContextPath() + page.replace("redirect:", ""));
         } else {

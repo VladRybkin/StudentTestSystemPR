@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class LogOutCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request) {
         CommandUtility commandUtility=new CommandUtility();
         request.getSession().invalidate();
         commandUtility.setUserRole(request, User.Role.UNKNOWN, "Guest");

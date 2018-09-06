@@ -48,7 +48,6 @@
 
 
 <br>
-<label><a href="${pageContext.request.contextPath}/api/testResult"><button onclick=""><fmt:message key="result" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/user_statistic"><button onclick=""><fmt:message key="statistic" bundle="${rb}" /></button></a></label><br>
 <label><a href="${pageContext.request.contextPath}/api/geographyCourse"><button onclick=""><fmt:message key="back.to.the.geography.course" bundle="${rb}" /></button><br>
 </a></label>

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class LoginCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(HttpServletRequest request) throws IOException {
         CommandUtility commandUtility = new CommandUtility();
         LoginService loginService = new LoginService();
         User.Role role = User.Role.UNKNOWN;

@@ -15,7 +15,7 @@ import java.util.List;
 public class UserStatisticCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(HttpServletRequest request) throws IOException {
         TestResultService testResultService = new TestResultService();
         int page = 1;
         int recordsPerPage = 10;

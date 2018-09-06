@@ -16,7 +16,7 @@ public class AstronomyTestCommand implements Command {
     private TestResultService testResultService = new TestResultService();
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request) {
         TestQuestionService testQuestionService = new TestQuestionService();
         User user = (User) request.getSession().getAttribute("userFromLogin");
         Test astronomyTest = new Test("ASTRONOMY");

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class UserAnswerStatistic implements Command {
+public class UserAnswerStatisticCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(HttpServletRequest request) throws IOException {
         UserAnswerService userAnswerService = new UserAnswerService();
         int page = 1;
         int recordsPerPage = 5;

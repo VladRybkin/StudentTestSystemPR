@@ -49,7 +49,6 @@ public class AccessFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 
 }
