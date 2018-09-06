@@ -15,11 +15,6 @@ public class UserService  {
            return dao.findById(id);
         }
     }
-    public User findCoursesByUserId(int id) {
-        try (UserDao dao = daoFactory.createUserDao()) {
-            return dao.findCoursesByUserId(id);
-        }
-    }
 
     public List<User> findAll() {
         try (UserDao dao = daoFactory.createUserDao()) {

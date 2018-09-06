@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import ua.training.service.UserService;
 
 public class JDBCUserDao implements UserDao {
     private Connection connection;
@@ -24,7 +25,6 @@ public class JDBCUserDao implements UserDao {
     private static Logger log = Logger.getLogger(JDBCUserDao.class.getName());
     private final String CREATE_QUERY = "INSERT INTO users(`user_login`, `user_password`,`user_role`,`user_mail`)VALUES(?, ?, ?, ?)";
     private final String FIND_BY_ID_QUERY = "SELECT * FROM users WHERE user_id=";
-    private final String FIND_COURSES_BY_USER_ID_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) WHERE user_id=";
     private final String FIND_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ?";
     private final String FIND_ALL_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) " + "LEFT JOIN user_answers USING(user_id) LEFT JOIN test_results USING(user_id)";
     private final String FIND_ALL_QUERY_WITH_LIMIT = "SELECT * FROM users limit ";
@@ -64,37 +64,16 @@ public class JDBCUserDao implements UserDao {
 
     }
 
-    @Override
-    public User findCoursesByUserId(int id) {
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(FIND_COURSES_BY_USER_ID_QUERY + id);
-            CourseMapper courseMapper = new CourseMapper();
-            User user = null;
-            if (rs.next()) {
-                user = userMapper.extractFromResultSet(rs);
-
-            }
-            while (rs.next()) {
-                Course course = courseMapper.extractFromResultSet(rs);
-                user.getCourses().add(course);
-            }
-            return user;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 
 
     public User findByLogin(String login) {
-        User user=null;
+        User user = null;
         try (PreparedStatement ps = connection.prepareStatement
                 (FIND_BY_LOGIN_QUERY)) {
             ps.setString(1, login);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                 user = userMapper.extractFromResultSet(rs);
+                user = userMapper.extractFromResultSet(rs);
 
             }
         } catch (SQLException e) {
@@ -140,12 +119,13 @@ public class JDBCUserDao implements UserDao {
         }
         return new ArrayList<>(users.values());
     }
+
     @Override
     public List<User> findAllWithLimit(int from, int to) {
         Map<Integer, User> users = new HashMap<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(FIND_ALL_QUERY_WITH_LIMIT+ from+", "+to);
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_QUERY_WITH_LIMIT + from + ", " + to);
             while (resultSet.next()) {
                 User user = userMapper.extractFromResultSet(resultSet);
                 users.put(user.getId(), user);

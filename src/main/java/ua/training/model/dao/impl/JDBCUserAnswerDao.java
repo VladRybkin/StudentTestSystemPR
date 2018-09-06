@@ -48,7 +48,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
             connection.commit();
         } catch (SQLException e) {
             connection.rollback();
-            e.printStackTrace();
+            log.log(org.apache.log4j.Level.INFO, e);
         }
 
     }
@@ -111,7 +111,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 
@@ -120,7 +120,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.log(org.apache.log4j.Level.INFO, e);
         }
     }
 

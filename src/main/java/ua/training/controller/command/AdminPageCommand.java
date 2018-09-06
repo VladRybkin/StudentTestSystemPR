@@ -19,9 +19,9 @@ public class AdminPageCommand implements Command {
             page = Integer.parseInt(request.getParameter("page"));
         }
         List<User> users = userService.findAllWithLimit((page - 1) * recordsPerPage, recordsPerPage);
+        users.sort(new UserComparator());
         int noOfRecords = userService.findAll().size();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-        users.sort(new UserComparator());
 
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
