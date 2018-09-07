@@ -41,7 +41,7 @@ public class GeographyTestCommand implements Command {
             addToStatistic(questions.get(4).getQuestion(), userAnswer5, questions.get(4).getAnswer(), statistic);
         }
 
-        int count = getTestResult(checkAnswer(userAnswer1, questions.get(0).getAnswer()),
+        int count = getCorrectQuestions(checkAnswer(userAnswer1, questions.get(0).getAnswer()),
                 checkAnswer(userAnswer2, questions.get(1).getAnswer()),
                 checkAnswer(userAnswer3, questions.get(2).getAnswer()),
                 checkAnswer(userAnswer4, questions.get(3).getAnswer()),
@@ -104,19 +104,17 @@ public class GeographyTestCommand implements Command {
 
     }
 
-
     private void setUserToAnswers(List<UserAnswer> statistic, User user) {
         for (UserAnswer answer : statistic) {
             answer.setUser(user);
         }
     }
 
-
     private void addStatsToDatabase(List<UserAnswer> statistic) throws SQLException {
         userAnswerService.insertUserAnswers(statistic.get(0), statistic.get(1), statistic.get(2), statistic.get(3), statistic.get(4));
     }
 
-    private int getTestResult(boolean... answers) {
+    private int getCorrectQuestions(boolean... answers) {
         int count = 0;
         for (boolean answer : answers) {
             if (answer) {

@@ -40,18 +40,17 @@ public class AstronomyTestCommand implements Command {
             addToStatistic(questions.get(4).getQuestion(), userAnswer5, questions.get(4).getAnswer(), statistic);
         }
 
-        int count = getTestResult(checkAnswer(userAnswer1, questions.get(0).getAnswer()),
+        int count = getCorrectQuestions(checkAnswer(userAnswer1, questions.get(0).getAnswer()),
                 checkAnswer(userAnswer2, questions.get(1).getAnswer()),
                 checkAnswer(userAnswer3, questions.get(2).getAnswer()),
                 checkAnswer(userAnswer4, questions.get(3).getAnswer()),
                 checkAnswer(userAnswer5, questions.get(4).getAnswer()));
 
-
         if (user != null) {
             setUserToAnswers(statistic, user);
         }
 
-        if (userAnswer1 != null && user!=null) {
+        if (userAnswer1 != null && user != null) {
             setTestResult(result, count, user);
         }
 
@@ -67,7 +66,7 @@ public class AstronomyTestCommand implements Command {
             addTestResultToDatabase(result);
         }
 
-        if (result.getCategory()!=null){
+        if (result.getCategory() != null) {
             session.setAttribute("result", result.getResult());
         }
         request.setAttribute("astronomyTest", questions);
@@ -101,7 +100,8 @@ public class AstronomyTestCommand implements Command {
         result.setUser(user);
         result.setResult(count == 0 ? 0 : 100d / (5d / count));
     }
-    private int getTestResult(boolean... answers) {
+
+    private int getCorrectQuestions(boolean... answers) {
         int count = 0;
         for (boolean answer : answers) {
             if (answer) {
@@ -117,8 +117,8 @@ public class AstronomyTestCommand implements Command {
         }
     }
 
-    private void addStatsToDatabase(List<UserAnswer>statistic) throws SQLException {
-        userAnswerService.insertUserAnswers( statistic.get(0),statistic.get(1),statistic.get(2),statistic.get(3),statistic.get(4));
+    private void addStatsToDatabase(List<UserAnswer> statistic) throws SQLException {
+        userAnswerService.insertUserAnswers(statistic.get(0), statistic.get(1), statistic.get(2), statistic.get(3), statistic.get(4));
     }
 
     private void addTestResultToDatabase(TestResult result) {
