@@ -41,11 +41,11 @@ public class GeographyTestCommand implements Command {
             addToStatistic(questions.get(4).getQuestion(), userAnswer5, questions.get(4).getAnswer(), statistic);
         }
 
-        int count = getTestResult(checkAnswer(userAnswer1, questions.get(0).getAnswer(), questions, 0),
-                checkAnswer(userAnswer2, questions.get(1).getAnswer(), questions, 1),
-                checkAnswer(userAnswer3, questions.get(2).getAnswer(), questions, 2),
-                checkAnswer(userAnswer4, questions.get(3).getAnswer(), questions, 3),
-                checkAnswer(userAnswer5, questions.get(4).getAnswer(), questions, 4));
+        int count = getTestResult(checkAnswer(userAnswer1, questions.get(0).getAnswer()),
+                checkAnswer(userAnswer2, questions.get(1).getAnswer()),
+                checkAnswer(userAnswer3, questions.get(2).getAnswer()),
+                checkAnswer(userAnswer4, questions.get(3).getAnswer()),
+                checkAnswer(userAnswer5, questions.get(4).getAnswer()));
 
         if (user != null) {
             setUserToAnswers(statistic, user);
@@ -87,9 +87,9 @@ public class GeographyTestCommand implements Command {
     }
 
 
-    private boolean checkAnswer(String userAnswer, String correctAnswer, List<TestQuestion> questions, int questionId) {
+    private boolean checkAnswer(String userAnswer, String correctAnswer) {
 
-        return userAnswer != null && userAnswer.equals(questions.get(questionId).getAnswer());
+        return userAnswer != null && userAnswer.equals(correctAnswer);
     }
 
     private void addToStatistic(String testQuestion, String userAnswer, String correctAnswer, List<UserAnswer> userAnswers) {
