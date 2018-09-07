@@ -23,14 +23,14 @@ public class JDBCUserDao implements UserDao {
     private Connection connection;
     private UserMapper userMapper = new UserMapper();
     private static Logger log = Logger.getLogger(JDBCUserDao.class.getName());
-    private final String CREATE_QUERY = "INSERT INTO users(`user_login`, `user_password`,`user_role`,`user_mail`)VALUES(?, ?, ?, ?)";
-    private final String FIND_BY_ID_QUERY = "SELECT * FROM users WHERE user_id=";
-    private final String FIND_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ?";
-    private final String FIND_ALL_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) " + "LEFT JOIN user_answers USING(user_id) LEFT JOIN test_results USING(user_id)";
-    private final String FIND_ALL_QUERY_WITH_LIMIT = "SELECT * FROM users limit ";
-    private final String UPDATE_QUERY = "UPDATE users SET user_login = ? , user_password = ?, user_role=?, user_mail=? WHERE user_id = ";
-    private final String DELETE_QUERY = "DELETE FROM users  WHERE user_id = ?";
-    private final String GET_USER_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
+    private String CREATE_QUERY = "INSERT INTO users(`user_login`, `user_password`,`user_role`,`user_mail`)VALUES(?, ?, ?, ?)";
+    private String FIND_BY_ID_QUERY = "SELECT * FROM users WHERE user_id=";
+    private String FIND_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ?";
+    private String FIND_ALL_QUERY = "SELECT * FROM users " + "LEFT JOIN student_courses USING(user_id) " + "LEFT JOIN courses USING (course_id) " + "LEFT JOIN user_answers USING(user_id) LEFT JOIN test_results USING(user_id)";
+    private String FIND_ALL_QUERY_WITH_LIMIT = "SELECT * FROM users limit ";
+    private String UPDATE_QUERY = "UPDATE users SET user_login = ? , user_password = ?, user_role=?, user_mail=? WHERE user_id = ";
+    private String DELETE_QUERY = "DELETE FROM users  WHERE user_id = ?";
+    private String GET_USER_BY_LOGIN_QUERY = "SELECT * FROM users WHERE user_login = ? AND user_password = ?";
 
     JDBCUserDao(Connection connection) {
         this.connection = connection;
@@ -63,7 +63,6 @@ public class JDBCUserDao implements UserDao {
 
 
     }
-
 
 
     public User findByLogin(String login) {

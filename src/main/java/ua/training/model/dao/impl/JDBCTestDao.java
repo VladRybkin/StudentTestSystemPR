@@ -15,10 +15,10 @@ public class JDBCTestDao implements TestDao {
     private Connection connection;
     private static Logger log = Logger.getLogger(JDBCTestDao.class.getName());
     private TestMapper testMapper = new TestMapper();
-    private final String createQuery = "INSERT INTO tests(`test_category`)VALUES(?)";
-    private final String findAllQuery = "SELECT * FROM tests LEFT JOIN test_questions USING(test_id)";
-    private final String updateQuery = "UPDATE tests SET test_category = ? WHERE test_id = ";
-    private final String deleteQuery = "DELETE FROM tests WHERE test_id = ?";
+    private String createQuery = "INSERT INTO tests(`test_category`)VALUES(?)";
+    private String findAllQuery = "SELECT * FROM tests LEFT JOIN test_questions USING(test_id)";
+    private String updateQuery = "UPDATE tests SET test_category = ? WHERE test_id = ";
+    private String deleteQuery = "DELETE FROM tests WHERE test_id = ?";
 
     JDBCTestDao(Connection connection) {
         this.connection = connection;

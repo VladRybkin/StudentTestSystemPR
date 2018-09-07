@@ -9,17 +9,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 public class JDBCTestQuestionDao implements TestQuestionDao {
     private Connection connection;
     private TestQuestionMapper testQuestionMapper = new TestQuestionMapper();
     private static Logger log = Logger.getLogger(JDBCTestQuestionDao.class.getName());
-    private final String createQuery = "INSERT INTO test_questions(test_category,question,answer, test_id)VALUES(?, ?, ?, ?)";
-    private final String findAllQuery = "SELECT * FROM test_questions";
-    private final String findAllByCategoryQuery = "SELECT * FROM test_questions WHERE test_category=";
-    private final String updateQuery = "UPDATE test_questions SET question = ? , answer= ?, test_category = ? WHERE test_question_id = ";
-    private final String deleteQuery = "DELETE FROM test_questions  WHERE test_question_id = ?";
+    private String createQuery = "INSERT INTO test_questions(test_category,question,answer, test_id)VALUES(?, ?, ?, ?)";
+    private String findAllQuery = "SELECT * FROM test_questions";
+    private String findAllByCategoryQuery = "SELECT * FROM test_questions WHERE test_category=";
+    private String updateQuery = "UPDATE test_questions SET question = ? , answer= ?, test_category = ? WHERE test_question_id = ";
+    private String deleteQuery = "DELETE FROM test_questions  WHERE test_question_id = ?";
 
     JDBCTestQuestionDao(Connection connection) {
         this.connection = connection;
@@ -72,14 +73,14 @@ public class JDBCTestQuestionDao implements TestQuestionDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
-            }
-            return new ArrayList<>(testQuestions.values());
+        }
+        return new ArrayList<>(testQuestions.values());
     }
 
 
     @Override
     public void update(TestQuestion testQuestion, int id) {
-        try (PreparedStatement ps = connection.prepareStatement(updateQuery+id)) {
+        try (PreparedStatement ps = connection.prepareStatement(updateQuery + id)) {
             testQuestionMapper.setParameters(ps, testQuestion);
             ps.executeUpdate();
         } catch (SQLException e) {

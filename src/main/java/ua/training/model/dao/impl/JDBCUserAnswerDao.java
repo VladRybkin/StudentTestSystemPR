@@ -16,11 +16,11 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     private Connection connection;
     private UserAnswerMapper userAnswerMapper = new UserAnswerMapper();
     private static Logger log = Logger.getLogger(JDBCUserAnswerDao.class.getName());
-    private final String createQuery = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" + "VALUES\n" + "(?, ?, ?, ?);";
-    private final String findAllByUserIdQuery = "SELECT * FROM user_answers RIGHT join users using(user_id) WHERE user_id=";
-    private final String findAllQuery = "SELECT * FROM user_answers RIGHT JOIN users USING(user_id);";
-    private final String updateQuery = "UPDATE statistic SET user_id = ? , test_result_id= ? WHERE user_id =";
-    private final String deleteQuery = "DELETE FROM stastistic  WHERE user_id = ?";
+    private String createQuery = "INSERT INTO user_answers (test_question,user_answer,correct_answer, user_id)\n" + "VALUES\n" + "(?, ?, ?, ?);";
+    private String findAllByUserIdQuery = "SELECT * FROM user_answers RIGHT join users using(user_id) WHERE user_id=";
+    private String findAllQuery = "SELECT * FROM user_answers RIGHT JOIN users USING(user_id);";
+    private String updateQuery = "UPDATE statistic SET user_id = ? , test_result_id= ? WHERE user_id =";
+    private String deleteQuery = "DELETE FROM stastistic  WHERE user_id = ?";
 
 
     JDBCUserAnswerDao(Connection connection) {
@@ -72,7 +72,7 @@ public class JDBCUserAnswerDao implements UserAnswerDao {
     @Override
     public List<UserAnswer> findAllByUserId(int id, int from, int to) {
         Map<Integer, UserAnswer> userAnswers = new HashMap<>();
-        Extract(userAnswers, findAllByUserIdQuery + id+" limit "+ from+", "+to);
+        Extract(userAnswers, findAllByUserIdQuery + id + " limit " + from + ", " + to);
 
         return new ArrayList<>(userAnswers.values());
 

@@ -19,11 +19,11 @@ public class JDBCCourseDao implements CourseDao {
     private Connection connection;
     private static Logger log = Logger.getLogger(JDBCCourseDao.class.getName());
     private CourseMapper courseMapper = new CourseMapper();
-    private final String createQuery = "INSERT INTO courses(`course_status`,`course_category`)VALUES(?, ?)";
-    private final String findByIdQuery = "SELECT * FROM courses WHERE course_id = ?";
-    private final String findAllQuery = "SELECT * FROM courses";
-    private final String updateQuery = "UPDATE courses SET course_id = ?, course_status =?, course_category=? WHERE course_id =";
-    private final String deleteQuery = "DELETE FROM courses WHERE course_id = ?";
+    private String createQuery = "INSERT INTO courses(`course_status`,`course_category`)VALUES(?, ?)";
+    private String findByIdQuery = "SELECT * FROM courses WHERE course_id = ?";
+    private String findAllQuery = "SELECT * FROM courses";
+    private String updateQuery = "UPDATE courses SET course_id = ?, course_status =?, course_category=? WHERE course_id =";
+    private String deleteQuery = "DELETE FROM courses WHERE course_id = ?";
 
     JDBCCourseDao(Connection connection) {
         this.connection = connection;
