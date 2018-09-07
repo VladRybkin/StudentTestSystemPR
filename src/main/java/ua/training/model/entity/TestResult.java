@@ -42,6 +42,31 @@ public class TestResult {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TestResult that = (TestResult) o;
+
+        if (id != that.id) return false;
+        if (Double.compare(that.result, result) != 0) return false;
+        if (category != null ? !category.equals(that.category) : that.category != null) return false;
+        return user != null ? user.equals(that.user) : that.user == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result1;
+        long temp;
+        result1 = id;
+        result1 = 31 * result1 + (category != null ? category.hashCode() : 0);
+        temp = Double.doubleToLongBits(result);
+        result1 = 31 * result1 + (int) (temp ^ (temp >>> 32));
+        result1 = 31 * result1 + (user != null ? user.hashCode() : 0);
+        return result1;
+    }
+
+    @Override
     public String toString() {
         return "TestResult{" +
                 "id=" + id +

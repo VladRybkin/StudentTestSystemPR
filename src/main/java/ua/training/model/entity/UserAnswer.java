@@ -57,6 +57,31 @@ public class UserAnswer {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserAnswer that = (UserAnswer) o;
+
+        if (id != that.id) return false;
+        if (testQuestion != null ? !testQuestion.equals(that.testQuestion) : that.testQuestion != null) return false;
+        if (userAnswer != null ? !userAnswer.equals(that.userAnswer) : that.userAnswer != null) return false;
+        if (correctAnswer != null ? !correctAnswer.equals(that.correctAnswer) : that.correctAnswer != null)
+            return false;
+        return user != null ? user.equals(that.user) : that.user == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (testQuestion != null ? testQuestion.hashCode() : 0);
+        result = 31 * result + (userAnswer != null ? userAnswer.hashCode() : 0);
+        result = 31 * result + (correctAnswer != null ? correctAnswer.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "UserAnswer{" +
                 "id=" + id +

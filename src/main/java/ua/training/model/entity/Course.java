@@ -43,6 +43,28 @@ public class Course {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Course course = (Course) o;
+
+        if (id != course.id) return false;
+        if (category != null ? !category.equals(course.category) : course.category != null) return false;
+        if (status != null ? !status.equals(course.status) : course.status != null) return false;
+        return users != null ? users.equals(course.users) : course.users == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (users != null ? users.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Course{" +
                 "id=" + id +

@@ -48,6 +48,30 @@ public class TestQuestion {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TestQuestion that = (TestQuestion) o;
+
+        if (id != that.id) return false;
+        if (category != null ? !category.equals(that.category) : that.category != null) return false;
+        if (question != null ? !question.equals(that.question) : that.question != null) return false;
+        if (answer != null ? !answer.equals(that.answer) : that.answer != null) return false;
+        return test != null ? test.equals(that.test) : that.test == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (question != null ? question.hashCode() : 0);
+        result = 31 * result + (answer != null ? answer.hashCode() : 0);
+        result = 31 * result + (test != null ? test.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "TestQuestion{" +
                 "id=" + id +

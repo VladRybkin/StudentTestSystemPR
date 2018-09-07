@@ -82,6 +82,36 @@ public class User {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (role != user.role) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (courses != null ? !courses.equals(user.courses) : user.courses != null) return false;
+        if (testResults != null ? !testResults.equals(user.testResults) : user.testResults != null) return false;
+        return userAnswers != null ? userAnswers.equals(user.userAnswers) : user.userAnswers == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (courses != null ? courses.hashCode() : 0);
+        result = 31 * result + (testResults != null ? testResults.hashCode() : 0);
+        result = 31 * result + (userAnswers != null ? userAnswers.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "id=" + id +

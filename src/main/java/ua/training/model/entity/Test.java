@@ -40,6 +40,26 @@ public class Test {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Test test = (Test) o;
+
+        if (id != test.id) return false;
+        if (category != null ? !category.equals(test.category) : test.category != null) return false;
+        return questions != null ? questions.equals(test.questions) : test.questions == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (questions != null ? questions.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Test{" +
                 "id=" + id +
