@@ -10,14 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeographyTestCommand implements Command  {
+public class GeographyTestCommand implements Command {
 
     private UserAnswerService userAnswerService = new UserAnswerService();
     private TestResultService testResultService = new TestResultService();
 
 
     @Override
-    public String execute(HttpServletRequest request)  {
+    public String execute(HttpServletRequest request) {
         TestQuestionService testQuestionService = new TestQuestionService();
         User user = (User) request.getSession().getAttribute("userFromLogin");
         Test geographyTest = new Test("GEOGRAPHY");
@@ -26,7 +26,6 @@ public class GeographyTestCommand implements Command  {
         List<TestQuestion> questions = geographyTest.getQuestions();
         HttpSession session = request.getSession();
         List<UserAnswer> statistic = new ArrayList<>();
-        int count = 0;
         String userAnswer1 = request.getParameter("userAnswer1");
         String userAnswer2 = request.getParameter("userAnswer2");
         String userAnswer3 = request.getParameter("userAnswer3");
@@ -42,27 +41,17 @@ public class GeographyTestCommand implements Command  {
             addToStatistic(questions.get(4).getQuestion(), userAnswer5, questions.get(4).getAnswer(), statistic);
         }
 
-        if (checkAnswer(userAnswer1, questions.get(0).getAnswer(), questions, 0)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer2, questions.get(1).getAnswer(), questions, 1)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer3, questions.get(2).getAnswer(), questions, 2)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer4, questions.get(3).getAnswer(), questions, 3)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer5, questions.get(4).getAnswer(), questions, 4)) {
-            count++;
-        }
+        int count = getTestResult(checkAnswer(userAnswer1, questions.get(0).getAnswer(), questions, 0),
+                checkAnswer(userAnswer2, questions.get(1).getAnswer(), questions, 1),
+                checkAnswer(userAnswer3, questions.get(2).getAnswer(), questions, 2),
+                checkAnswer(userAnswer4, questions.get(3).getAnswer(), questions, 3),
+                checkAnswer(userAnswer5, questions.get(4).getAnswer(), questions, 4));
 
         if (user != null) {
             setUserToAnswers(statistic, user);
         }
 
-        if (userAnswer1 != null && user!=null) {
+        if (userAnswer1 != null && user != null) {
             setTestResult(result, count, user);
         }
 
@@ -78,7 +67,7 @@ public class GeographyTestCommand implements Command  {
             addTestResultToDatabase(result);
         }
 
-        if (result.getCategory()!=null){
+        if (result.getCategory() != null) {
             session.setAttribute("result", result.getResult());
         }
 
@@ -130,6 +119,15 @@ public class GeographyTestCommand implements Command  {
         userAnswerService.insertUserAnswers(statistic.get(0), statistic.get(1), statistic.get(2), statistic.get(3), statistic.get(4));
     }
 
+    private int getTestResult(boolean... answers) {
+        int count = 0;
+        for (boolean answer : answers) {
+            if (answer) {
+                count++;
+            }
+        }
+        return count;
+    }
 
 
     private void addTestResultToDatabase(TestResult result) {

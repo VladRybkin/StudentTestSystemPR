@@ -25,7 +25,7 @@ public class AstronomyTestCommand implements Command {
         List<TestQuestion> questions = astronomyTest.getQuestions();
         HttpSession session = request.getSession();
         List<UserAnswer> statistic = new ArrayList<>();
-        int count = 0;
+
         String userAnswer1 = request.getParameter("userAnswer1");
         String userAnswer2 = request.getParameter("userAnswer2");
         String userAnswer3 = request.getParameter("userAnswer3");
@@ -40,21 +40,12 @@ public class AstronomyTestCommand implements Command {
             addToStatistic(questions.get(4).getQuestion(), userAnswer5, questions.get(4).getAnswer(), statistic);
         }
 
-        if (checkAnswer(userAnswer1, questions.get(0).getAnswer(), questions, 0)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer2, questions.get(1).getAnswer(), questions, 1)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer3, questions.get(2).getAnswer(), questions, 2)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer4, questions.get(3).getAnswer(), questions, 3)) {
-            count++;
-        }
-        if (checkAnswer(userAnswer5, questions.get(4).getAnswer(), questions, 4)) {
-            count++;
-        }
+        int count = getTestResult(checkAnswer(userAnswer1, questions.get(0).getAnswer(), questions, 0),
+                checkAnswer(userAnswer2, questions.get(1).getAnswer(), questions, 1),
+                checkAnswer(userAnswer3, questions.get(2).getAnswer(), questions, 2),
+                checkAnswer(userAnswer4, questions.get(3).getAnswer(), questions, 3),
+                checkAnswer(userAnswer5, questions.get(4).getAnswer(), questions, 4));
+
 
         if (user != null) {
             setUserToAnswers(statistic, user);
@@ -112,7 +103,15 @@ public class AstronomyTestCommand implements Command {
         result.setCategory("ASTRONOMY");
         result.setUser(user);
         result.setResult(count == 0 ? 0 : 100d / (5d / count));
-
+    }
+    private int getTestResult(boolean... answers) {
+        int count = 0;
+        for (boolean answer : answers) {
+            if (answer) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private void setUserToAnswers(List<UserAnswer> statistic, User user) {

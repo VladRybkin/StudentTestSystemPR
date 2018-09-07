@@ -19,6 +19,6 @@ public class UserAnswerServiceTest {
 
     @Test
     public void findAllByUserId() {
-        assertTrue(userAnswerService.findAllByUserId(2, 1, Integer.MAX_VALUE).size() > 0);
+        assertTrue(userAnswerService.findAllByUserId(2, 1, Integer.MAX_VALUE).size() % 5 == 0);
     }
 }
