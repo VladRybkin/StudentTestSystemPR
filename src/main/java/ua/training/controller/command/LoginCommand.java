@@ -35,7 +35,8 @@ public class LoginCommand implements Command {
         if (String.valueOf(role).equals("ADMIN")) {
             commandUtility.setUserRole(request, User.Role.ADMIN, login);
             return "redirect:/api/admin_page";
-        } else if (String.valueOf(role).equals("STUDENT")) {
+        }
+        if (String.valueOf(role).equals("STUDENT")) {
             commandUtility.setUserRole(request, User.Role.STUDENT, login);
             return "redirect:/api/student_page";
         } else {

@@ -26,8 +26,6 @@ public class AstronomyTestCommand implements Command {
         HttpSession session = request.getSession();
         List<UserAnswer> statistic = new ArrayList<>();
         int count = 0;
-
-
         String userAnswer1 = request.getParameter("userAnswer1");
         String userAnswer2 = request.getParameter("userAnswer2");
         String userAnswer3 = request.getParameter("userAnswer3");
@@ -41,7 +39,6 @@ public class AstronomyTestCommand implements Command {
             addToStatistic(questions.get(3).getQuestion(), userAnswer4, questions.get(3).getAnswer(), statistic);
             addToStatistic(questions.get(4).getQuestion(), userAnswer5, questions.get(4).getAnswer(), statistic);
         }
-
 
         if (checkAnswer(userAnswer1, questions.get(0).getAnswer(), questions, 0)) {
             count++;
@@ -59,17 +56,13 @@ public class AstronomyTestCommand implements Command {
             count++;
         }
 
-
         if (user != null) {
             setUserToAnswers(statistic, user);
         }
-        if (user != null) {
-            setUserToResult(result, user);
-        }
-        if (userAnswer1 != null) {
-            setTestResult(result, count);
-        }
 
+        if (userAnswer1 != null && user!=null) {
+            setTestResult(result, count, user);
+        }
 
         if (statistic.size() == 5) {
             try {
@@ -115,8 +108,9 @@ public class AstronomyTestCommand implements Command {
         userAnswers.add(answer);
     }
 
-    private void setTestResult(TestResult result, int count) {
+    private void setTestResult(TestResult result, int count, User user) {
         result.setCategory("ASTRONOMY");
+        result.setUser(user);
         result.setResult(count == 0 ? 0 : 100d / (5d / count));
 
     }
@@ -129,11 +123,6 @@ public class AstronomyTestCommand implements Command {
 
     private void addStatsToDatabase(List<UserAnswer>statistic) throws SQLException {
         userAnswerService.insertUserAnswers( statistic.get(0),statistic.get(1),statistic.get(2),statistic.get(3),statistic.get(4));
-    }
-
-    private void setUserToResult(TestResult result, User user) {
-        result.setCategory("ASTRONOMY");
-        result.setUser(user);
     }
 
     private void addTestResultToDatabase(TestResult result) {

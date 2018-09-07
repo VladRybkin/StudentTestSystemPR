@@ -13,6 +13,7 @@ public class LogOutCommand implements Command {
         CommandUtility commandUtility=new CommandUtility();
         request.getSession().invalidate();
         commandUtility.setUserRole(request, User.Role.UNKNOWN, "Guest");
+
         return "/index.jsp";
     }
 }

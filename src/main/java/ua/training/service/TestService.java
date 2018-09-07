@@ -17,7 +17,6 @@ public class TestService {
         }
     }
 
-
     public Test findById(int id) {
         try (TestDao dao = daoFactory.createTestDao()) {
             return dao.findById(id);

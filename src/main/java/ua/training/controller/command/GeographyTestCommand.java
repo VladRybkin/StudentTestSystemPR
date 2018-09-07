@@ -10,14 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeographyTestCommand implements Command {
+public class GeographyTestCommand implements Command  {
 
     private UserAnswerService userAnswerService = new UserAnswerService();
     private TestResultService testResultService = new TestResultService();
 
 
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request)  {
         TestQuestionService testQuestionService = new TestQuestionService();
         User user = (User) request.getSession().getAttribute("userFromLogin");
         Test geographyTest = new Test("GEOGRAPHY");
@@ -27,8 +27,6 @@ public class GeographyTestCommand implements Command {
         HttpSession session = request.getSession();
         List<UserAnswer> statistic = new ArrayList<>();
         int count = 0;
-
-
         String userAnswer1 = request.getParameter("userAnswer1");
         String userAnswer2 = request.getParameter("userAnswer2");
         String userAnswer3 = request.getParameter("userAnswer3");
@@ -36,6 +34,7 @@ public class GeographyTestCommand implements Command {
         String userAnswer5 = request.getParameter("userAnswer5");
 
         if (userAnswer1 != null && userAnswer2 != null && userAnswer3 != null && userAnswer4 != null && userAnswer5 != null) {
+
             addToStatistic(questions.get(0).getQuestion(), userAnswer1, questions.get(0).getAnswer(), statistic);
             addToStatistic(questions.get(1).getQuestion(), userAnswer2, questions.get(1).getAnswer(), statistic);
             addToStatistic(questions.get(2).getQuestion(), userAnswer3, questions.get(2).getAnswer(), statistic);
@@ -59,17 +58,13 @@ public class GeographyTestCommand implements Command {
             count++;
         }
 
-
         if (user != null) {
             setUserToAnswers(statistic, user);
         }
-        if (user != null) {
-            setUserToResult(result, user);
-        }
-        if (userAnswer1 != null) {
-            setTestResult(result, count);
-        }
 
+        if (userAnswer1 != null && user!=null) {
+            setTestResult(result, count, user);
+        }
 
         if (statistic.size() == 5) {
             try {
@@ -83,10 +78,10 @@ public class GeographyTestCommand implements Command {
             addTestResultToDatabase(result);
         }
 
-
         if (result.getCategory()!=null){
             session.setAttribute("result", result.getResult());
         }
+
         request.setAttribute("geographytest", questions);
         session.setAttribute("statistic", statistic);
         request.setAttribute("Gfirst", questions.get(0).getQuestion());
@@ -116,13 +111,10 @@ public class GeographyTestCommand implements Command {
         userAnswers.add(answer);
     }
 
-    private void setTestResult(TestResult result, int count) {
+    private void setTestResult(TestResult result, int count, User user) {
         result.setCategory("GEOGRAPHY");
-        if (count == 0) {
-            result.setResult(0);
-        } else {
-            result.setResult(100d / (5d / count));
-        }
+        result.setUser(user);
+        result.setResult(count == 0 ? 0 : 100d / (5d / count));
 
     }
 
@@ -138,10 +130,7 @@ public class GeographyTestCommand implements Command {
         userAnswerService.insertUserAnswers(statistic.get(0), statistic.get(1), statistic.get(2), statistic.get(3), statistic.get(4));
     }
 
-    private void setUserToResult(TestResult result, User user) {
-        result.setCategory("GEOGRAPHY");
-        result.setUser(user);
-    }
+
 
     private void addTestResultToDatabase(TestResult result) {
         testResultService.create(result);
