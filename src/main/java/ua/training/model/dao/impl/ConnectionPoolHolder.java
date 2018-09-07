@@ -1,11 +1,13 @@
 package ua.training.model.dao.impl;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.util.ResourceBundle;
 
 public class ConnectionPoolHolder {
+    private static Logger log = Logger.getLogger(ConnectionPoolHolder.class.getName());
     private static ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
     private static volatile DataSource dataSource;
 
@@ -18,7 +20,7 @@ public class ConnectionPoolHolder {
                     try {
                         Class.forName(resourceBundle.getString("db.driver"));
                     } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+                        log.log(org.apache.log4j.Level.INFO, e);
                     }
                     ds.setUrl(resourceBundle.getString("db.host"));
                     ds.setUsername(resourceBundle.getString("db.login"));

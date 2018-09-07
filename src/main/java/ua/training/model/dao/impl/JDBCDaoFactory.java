@@ -1,5 +1,6 @@
 package ua.training.model.dao.impl;
 
+import org.apache.log4j.Logger;
 import ua.training.model.dao.*;
 
 import javax.sql.DataSource;
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class JDBCDaoFactory extends DaoFactory {
+    private static Logger log = Logger.getLogger(JDBCDaoFactory.class.getName());
 
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
 
@@ -45,7 +47,9 @@ public class JDBCDaoFactory extends DaoFactory {
         try {
             return dataSource.getConnection();
         } catch (SQLException e) {
+            log.log(org.apache.log4j.Level.INFO, e);
             throw new RuntimeException(e);
+
         }
     }
 }

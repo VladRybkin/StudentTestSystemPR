@@ -33,7 +33,6 @@ public class GeographyTestCommand implements Command {
         String userAnswer5 = request.getParameter("userAnswer5");
 
         if (userAnswer1 != null && userAnswer2 != null && userAnswer3 != null && userAnswer4 != null && userAnswer5 != null) {
-
             addToStatistic(questions.get(0).getQuestion(), userAnswer1, questions.get(0).getAnswer(), statistic);
             addToStatistic(questions.get(1).getQuestion(), userAnswer2, questions.get(1).getAnswer(), statistic);
             addToStatistic(questions.get(2).getQuestion(), userAnswer3, questions.get(2).getAnswer(), statistic);
