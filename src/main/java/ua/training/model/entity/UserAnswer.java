@@ -7,6 +7,15 @@ public class UserAnswer {
     private String correctAnswer;
     private User user;
 
+    public UserAnswer() {
+    }
+
+    public UserAnswer(String testQuestion, String userAnswer, String correctAnswer) {
+        this.testQuestion = testQuestion;
+        this.userAnswer = userAnswer;
+        this.correctAnswer = correctAnswer;
+    }
+
     public int getId() {
         return id;
     }

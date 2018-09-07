@@ -92,10 +92,7 @@ public class AstronomyTestCommand implements Command {
     }
 
     private void addToStatistic(String testQuestion, String userAnswer, String correctAnswer, List<UserAnswer> userAnswers) {
-        UserAnswer answer = new UserAnswer();
-        answer.setTestQuestion(testQuestion);
-        answer.setUserAnswer(userAnswer);
-        answer.setCorrectAnswer(correctAnswer);
+        UserAnswer answer = new UserAnswer(testQuestion, userAnswer, correctAnswer);
         userAnswers.add(answer);
     }
 
