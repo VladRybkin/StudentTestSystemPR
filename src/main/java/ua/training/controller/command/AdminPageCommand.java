@@ -4,6 +4,7 @@ package ua.training.controller.command;
 import ua.training.model.entity.User;
 import ua.training.service.UserService;
 import ua.training.service.comparators.UserComparator;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class AdminPageCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws IOException {
+    public String execute(HttpServletRequest request) {
         UserService userService = new UserService();
         int page = 1;
         int recordsPerPage = 5;

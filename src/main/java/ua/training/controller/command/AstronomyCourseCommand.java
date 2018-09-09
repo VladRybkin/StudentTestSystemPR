@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class AstronomyCourseCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws IOException {
+    public String execute(HttpServletRequest request) {
 
         return "/WEB-INF/pages/courses/astronomyCourse.jsp";
     }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UserAnswerStatisticCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws IOException {
+    public String execute(HttpServletRequest request)  {
         UserAnswerService userAnswerService = new UserAnswerService();
         int page = 1;
         int recordsPerPage = 5;

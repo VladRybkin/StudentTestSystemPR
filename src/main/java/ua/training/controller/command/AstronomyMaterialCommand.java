@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class AstronomyMaterialCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws IOException {
+    public String execute(HttpServletRequest request) {
 
         return "/WEB-INF/pages/materials/astronomyMaterial.jsp";
     }

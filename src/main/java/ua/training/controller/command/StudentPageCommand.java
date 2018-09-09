@@ -11,8 +11,7 @@ import java.util.ResourceBundle;
 
 public class StudentPageCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws IOException {
-
+    public String execute(HttpServletRequest request)  {
         return "/WEB-INF/pages/studentPages/student_page.jsp";
     }
 }
