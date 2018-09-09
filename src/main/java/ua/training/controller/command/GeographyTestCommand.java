@@ -99,8 +99,9 @@ public class GeographyTestCommand implements Command {
     private void setTestResult(TestResult result, int count, User user) {
         result.setCategory("GEOGRAPHY");
         result.setUser(user);
-        result.setResult(count == 0 ? 0 : 100d / (5d / count));
-
+        result.setResult(count == 0 ? 0 : 100d / (5d / count));        /*
+                                                                        5- amount of questions
+                                                                        */
     }
 
     private void setUserToAnswers(List<UserAnswer> statistic, User user) {
