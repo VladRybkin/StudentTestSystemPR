@@ -21,6 +21,7 @@ public class ConnectionPoolHolder {
                         Class.forName(resourceBundle.getString("db.driver"));
                     } catch (ClassNotFoundException e) {
                         log.log(org.apache.log4j.Level.INFO, e);
+                        throw new RuntimeException();
                     }
                     ds.setUrl(resourceBundle.getString("db.host"));
                     ds.setUsername(resourceBundle.getString("db.login"));
