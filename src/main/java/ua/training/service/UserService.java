@@ -7,7 +7,7 @@ import ua.training.model.entity.User;
 import java.util.List;
 
 public class UserService  {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
 
     public User findById(int id) {

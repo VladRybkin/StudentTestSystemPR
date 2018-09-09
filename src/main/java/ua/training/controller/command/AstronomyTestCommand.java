@@ -95,10 +95,13 @@ public class AstronomyTestCommand implements Command {
         userAnswers.add(answer);
     }
 
+
     private void setTestResult(TestResult result, int count, User user) {
         result.setCategory("ASTRONOMY");
         result.setUser(user);
-        result.setResult(count == 0 ? 0 : 100d / (5d / count));
+        result.setResult(count == 0 ? 0 : 100d / (5d / count));       /*
+                                                                        5- amount of questions
+                                                                       */
     }
 
     private int getCorrectQuestions(boolean... answers) {

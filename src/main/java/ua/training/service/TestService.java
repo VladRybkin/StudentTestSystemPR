@@ -8,7 +8,7 @@ import ua.training.model.entity.Test;
 import java.util.List;
 
 public class TestService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
 
     public void create(Test test) {

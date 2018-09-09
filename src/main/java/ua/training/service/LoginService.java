@@ -5,7 +5,7 @@ import ua.training.model.dao.UserDao;
 import ua.training.model.entity.User;
 
 public class LoginService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
     public User getUserByLoginAndPass(String login, String password) {
 

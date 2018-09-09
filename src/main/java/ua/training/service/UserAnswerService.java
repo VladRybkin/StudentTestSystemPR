@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserAnswerService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
     public void create(UserAnswer userAnswer) {
         try (UserAnswerDao dao = daoFactory.createUserAnswerDao()) {

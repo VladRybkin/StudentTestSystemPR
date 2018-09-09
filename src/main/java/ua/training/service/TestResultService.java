@@ -7,7 +7,7 @@ import ua.training.model.entity.TestResult;
 import java.util.List;
 
 public class TestResultService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
 
     public void create(TestResult testResult) {

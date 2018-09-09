@@ -8,8 +8,7 @@ import ua.training.model.entity.Course;
 import java.util.List;
 
 public class CourseService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
-
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
     public void create(Course course) {
         try (CourseDao dao = daoFactory.createCourseDao()) {

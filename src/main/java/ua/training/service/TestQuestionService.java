@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public class TestQuestionService {
-    DaoFactory daoFactory = DaoFactory.getInstance();
+    private DaoFactory daoFactory = DaoFactory.getInstance();
 
 
     public void create(TestQuestion testQuestion) {

@@ -55,7 +55,7 @@ public class Servlet extends HttpServlet {
 
 
     }
-    public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getRequestURI();
         path = path.replaceAll(".*/api/" , "");
         Command command = commands.getOrDefault(path, (r)->"/index.jsp)");
