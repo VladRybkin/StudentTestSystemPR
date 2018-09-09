@@ -37,6 +37,7 @@ public class JDBCCourseDao implements CourseDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
 
         }
     }
@@ -53,6 +54,7 @@ public class JDBCCourseDao implements CourseDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
         return course;
 
@@ -74,6 +76,7 @@ public class JDBCCourseDao implements CourseDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
 
         }
         return new ArrayList<>(courses.values());
@@ -87,6 +90,7 @@ public class JDBCCourseDao implements CourseDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -98,6 +102,7 @@ public class JDBCCourseDao implements CourseDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -107,6 +112,7 @@ public class JDBCCourseDao implements CourseDao {
             connection.close();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -117,6 +123,7 @@ public class JDBCCourseDao implements CourseDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
 
         }
     }

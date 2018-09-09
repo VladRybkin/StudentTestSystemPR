@@ -44,6 +44,7 @@ public class JDBCUserDao implements UserDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -58,6 +59,7 @@ public class JDBCUserDao implements UserDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
         return user;
 
@@ -77,6 +79,7 @@ public class JDBCUserDao implements UserDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
         return user;
     }
@@ -115,6 +118,7 @@ public class JDBCUserDao implements UserDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
         return new ArrayList<>(users.values());
     }
@@ -131,6 +135,7 @@ public class JDBCUserDao implements UserDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
         return new ArrayList<>(users.values());
     }
@@ -143,6 +148,7 @@ public class JDBCUserDao implements UserDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -154,6 +160,7 @@ public class JDBCUserDao implements UserDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -170,6 +177,7 @@ public class JDBCUserDao implements UserDao {
             user = userMapper.extractFromResultSet(resultSet);
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
         return user;
     }
@@ -181,6 +189,7 @@ public class JDBCUserDao implements UserDao {
             connection.close();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 

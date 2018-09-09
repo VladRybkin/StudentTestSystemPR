@@ -35,6 +35,7 @@ public class JDBCTestResultDao implements TestResultDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -48,6 +49,7 @@ public class JDBCTestResultDao implements TestResultDao {
         Map<Integer, TestResult> testResults = new HashMap<>();
         Extract(testResults, findAllQuery);
         return new ArrayList<>(testResults.values());
+
     }
 
     @Override
@@ -75,6 +77,7 @@ public class JDBCTestResultDao implements TestResultDao {
             }
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -85,6 +88,7 @@ public class JDBCTestResultDao implements TestResultDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -95,6 +99,7 @@ public class JDBCTestResultDao implements TestResultDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 
@@ -104,6 +109,7 @@ public class JDBCTestResultDao implements TestResultDao {
             connection.close();
         } catch (SQLException e) {
             log.log(org.apache.log4j.Level.INFO, e);
+            throw new RuntimeException();
         }
     }
 

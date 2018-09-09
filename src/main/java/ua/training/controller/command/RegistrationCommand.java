@@ -22,7 +22,6 @@ public class RegistrationCommand implements Command {
         user.setPassword(password);
         user.setEmail(email);
         user.setRole(User.Role.STUDENT);
-
         if (user.getLogin() != null && user.getPassword() != null && user.getEmail() != null && user.getEmail().matches(REGEX_EMAIL)) {
             userService.create(user);
             request.setAttribute("successReg", "registration successful " + "login " + login + " password " + password + " email " + email);
