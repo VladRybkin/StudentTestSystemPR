@@ -9,15 +9,18 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class UserAnswerMapper implements ObjectMapper<UserAnswer> {
-    UserAnswerService userAnswerService = new UserAnswerService();
+    private String USER_ANSWER_ID="user_answer_id";
+    private String TEST_QUESTION="test_question";
+    private String USER_ANSWER="user_answer";
+    private String CORRECT_ANSWER="correct_answer";
 
     @Override
     public UserAnswer extractFromResultSet(ResultSet rs) throws SQLException {
         UserAnswer userAnswer = new UserAnswer();
-        userAnswer.setId(rs.getInt("user_answer_id"));
-        userAnswer.setTestQuestion(rs.getString("test_question"));
-        userAnswer.setUserAnswer(rs.getString("user_answer"));
-        userAnswer.setCorrectAnswer(rs.getString("correct_answer"));
+        userAnswer.setId(rs.getInt(USER_ANSWER_ID));
+        userAnswer.setTestQuestion(rs.getString(TEST_QUESTION));
+        userAnswer.setUserAnswer(rs.getString(USER_ANSWER));
+        userAnswer.setCorrectAnswer(rs.getString(CORRECT_ANSWER));
         return userAnswer;
     }
 

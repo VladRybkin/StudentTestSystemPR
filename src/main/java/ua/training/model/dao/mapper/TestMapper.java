@@ -8,11 +8,14 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class TestMapper implements ObjectMapper<Test> {
+    private String TEST_ID="test_id";
+    private String TEST_CATEGORY="test_category";
+
     @Override
     public Test extractFromResultSet(ResultSet rs) throws SQLException {
         Test test=new Test();
-        test.setId(rs.getInt("test_id"));
-        test.setCategory(rs.getString("test_category"));
+        test.setId(rs.getInt(TEST_ID));
+        test.setCategory(rs.getString(TEST_CATEGORY));
 
         return test;
     }

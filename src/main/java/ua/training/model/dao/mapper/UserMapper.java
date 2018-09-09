@@ -9,14 +9,20 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class UserMapper implements ObjectMapper<User> {
+    private String USER_ID="user_id";
+    private String USER_LOGIN="user_login";
+    private String USER_PASSWORD="user_password";
+    private String USER_ROLE="user_role";
+    private String USER_MAIL="user_mail";
+
     @Override
     public User extractFromResultSet(ResultSet rs) throws SQLException {
         User user=new User();
-        user.setId(rs.getInt("user_id"));
-        user.setLogin(rs.getString("user_login"));
-        user.setPassword(rs.getString("user_password"));
-        user.setRole(User.Role.valueOf(rs.getString("user_role")));
-        user.setEmail(rs.getString("user_mail"));
+        user.setId(rs.getInt(USER_ID));
+        user.setLogin(rs.getString(USER_LOGIN));
+        user.setPassword(rs.getString(USER_PASSWORD));
+        user.setRole(User.Role.valueOf(rs.getString(USER_ROLE)));
+        user.setEmail(rs.getString(USER_MAIL));
         return user;
     }
 

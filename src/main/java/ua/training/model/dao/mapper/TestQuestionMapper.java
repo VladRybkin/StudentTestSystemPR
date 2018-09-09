@@ -8,13 +8,18 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class TestQuestionMapper implements ObjectMapper<TestQuestion> {
+    private String TEST_QUESTION_ID="test_question_id";
+    private String TEST_CATEGORY="test_category";
+    private String QUESTION="question";
+    private String ANSWER="answer";
+
     @Override
     public TestQuestion extractFromResultSet(ResultSet rs) throws SQLException {
         TestQuestion testQuestion = new TestQuestion();
-        testQuestion.setId(rs.getInt("test_question_id"));
-        testQuestion.setCategory(rs.getString("test_category"));
-        testQuestion.setQuestion(rs.getString("question"));
-        testQuestion.setAnswer(rs.getString("answer"));
+        testQuestion.setId(rs.getInt(TEST_QUESTION_ID));
+        testQuestion.setCategory(rs.getString(TEST_CATEGORY));
+        testQuestion.setQuestion(rs.getString(QUESTION));
+        testQuestion.setAnswer(rs.getString(ANSWER));
         return testQuestion;
     }
 

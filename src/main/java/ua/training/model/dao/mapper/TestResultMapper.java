@@ -11,14 +11,18 @@ import java.util.Map;
 
 public class TestResultMapper implements ObjectMapper<TestResult> {
     private UserService userService = new UserService();
+    private String TEST_RESULT_ID="test_result_id";
+    private String TEST_RESULT_CATEGORY="test_result_category";
+    private String TEST_RESULT="test_result";
+    private String USER_ID="user_id";
 
     @Override
     public TestResult extractFromResultSet(ResultSet rs) throws SQLException {
         TestResult testResult = new TestResult();
-        testResult.setId(rs.getInt("test_result_id"));
-        testResult.setCategory(rs.getString("test_result_category"));
-        testResult.setResult(rs.getDouble("test_result"));
-        User user = userService.findById(rs.getInt("user_id"));
+        testResult.setId(rs.getInt(TEST_RESULT_ID));
+        testResult.setCategory(rs.getString(TEST_RESULT_CATEGORY));
+        testResult.setResult(rs.getDouble(TEST_RESULT));
+        User user = userService.findById(rs.getInt(USER_ID));
         testResult.setUser(user);
         return testResult;
     }
