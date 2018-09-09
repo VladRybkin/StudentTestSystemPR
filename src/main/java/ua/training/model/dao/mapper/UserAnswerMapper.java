@@ -1,8 +1,6 @@
 package ua.training.model.dao.mapper;
 
 import ua.training.model.entity.UserAnswer;
-import ua.training.service.UserAnswerService;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

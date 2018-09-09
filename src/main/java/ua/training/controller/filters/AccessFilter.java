@@ -16,7 +16,7 @@ public class AccessFilter implements Filter {
     private List<String> adminPages = new ArrayList<>();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig)  {
         studentPages.add("/api/astronomyCourse");
         studentPages.add("/api/geographyCourse");
         studentPages.add("/api/student_page");
