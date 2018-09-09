@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AccessFilter implements Filter {
-    private List<String> studentPages = new ArrayList<>();
-    private List<String> adminPages = new ArrayList<>();
+    private Set<String> studentPages = new HashSet<>();
+    private Set<String> adminPages = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig)  {
