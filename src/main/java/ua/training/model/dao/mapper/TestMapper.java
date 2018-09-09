@@ -16,7 +16,6 @@ public class TestMapper implements ObjectMapper<Test> {
         Test test=new Test();
         test.setId(rs.getInt(TEST_ID));
         test.setCategory(rs.getString(TEST_CATEGORY));
-
         return test;
     }
 

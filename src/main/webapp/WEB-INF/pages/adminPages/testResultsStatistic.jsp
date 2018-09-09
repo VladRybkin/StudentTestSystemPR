@@ -16,9 +16,9 @@
 <fmt:setBundle basename="loc" var="rb"/>
 <form>
     <input name="language" type="image" value="en_US"
-    ${language=='en_US' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/United-States-Flag-icon.png" style="height: 35px; width: 35px;">
+    ${language=='en_US' ? 'selected' : '' } src = ${pageContext.request.contextPath}/images/flags/flag_usa.png style="height: 35px; width: 35px;">
     <input name="language" type="image" value="uk_UA"
-    ${language=='uk_UA' ? 'selected' : '' } src = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/128/Ukraine-Flag-icon.png" style="height: 35px; width: 35px;">
+    ${language=='uk_UA' ? 'selected' : '' } src = ${pageContext.request.contextPath}/images/flags/flag_ua.png style="height: 35px; width: 35px;">
 </form>
 <br>
 <h2><fmt:message key="admin.page" bundle="${rb}" /></h2>
