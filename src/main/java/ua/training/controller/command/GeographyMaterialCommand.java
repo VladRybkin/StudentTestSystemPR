@@ -1,8 +1,7 @@
 package ua.training.controller.command;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
 
 public class GeographyMaterialCommand implements  Command {
     @Override

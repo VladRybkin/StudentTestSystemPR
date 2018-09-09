@@ -6,8 +6,7 @@ import ua.training.service.UserService;
 import ua.training.service.comparators.UserComparator;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
 import java.util.List;
 
 public class AdminPageCommand implements Command {

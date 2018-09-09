@@ -4,8 +4,6 @@ import ua.training.model.entity.User;
 import ua.training.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ResourceBundle;
 
 public class RegistrationCommand implements Command {
 

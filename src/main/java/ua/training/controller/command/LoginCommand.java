@@ -4,8 +4,7 @@ import ua.training.model.entity.User;
 import ua.training.service.LoginService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
 
 
 public class LoginCommand implements Command {
